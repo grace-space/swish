@@ -8,6 +8,7 @@ public class SwishApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SwishApplication.class, args);
+		
 	}
 
 }
