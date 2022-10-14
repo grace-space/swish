@@ -3,11 +3,13 @@ package com.grace.swish.model;
 import java.io.Serializable;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-@Entity
-@Table(name = "user")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
