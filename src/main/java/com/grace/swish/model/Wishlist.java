@@ -10,19 +10,23 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table
-public class Game implements Serializable {
+public class Wishlist implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long gameId;
+	private long wishId;
 	
-	private String title;
+	// i need to fix up my relationships still... 
+	@OneToOne(targetEntity = User.class)
+	@JoinColumn(name = "userId", nullable = false)
+	private User user;
 	
-	private double rating;
+	@ManyToOne
+	@JoinColumn(name = "gameId")
+	private Game game;
 	
-	private double msrp;
 	
 	
 

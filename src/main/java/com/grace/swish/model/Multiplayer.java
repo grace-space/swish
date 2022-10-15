@@ -1,6 +1,5 @@
 package com.grace.swish.model;
 
-import java.io.Serializable;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,14 +9,11 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table
-public class Format implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public class Multiplayer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long formatId;
-	private String formatType;
-	
+	private long multiId;
+	private String multiType;
 
 }

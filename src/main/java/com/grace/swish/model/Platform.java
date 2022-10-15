@@ -19,6 +19,6 @@ public class Platform implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long platformId;
-	private String platformType;
+	private String platformName;
 
 }
