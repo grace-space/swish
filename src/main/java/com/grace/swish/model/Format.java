@@ -1,6 +1,7 @@
 package com.grace.swish.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,6 +19,9 @@ public class Format implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long formatId;
 	private String formatType;
+	
+	@ManyToMany(mappedBy = "formats")
+	private Set<Game> games;
 	
 
 }

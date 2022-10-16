@@ -1,6 +1,7 @@
 package com.grace.swish.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,5 +19,8 @@ public class Retailer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long retailerId;
 	private String retailerName;
+	
+	@ManyToMany(mappedBy = "retailers")
+	private Set<Game> games;
 
 }

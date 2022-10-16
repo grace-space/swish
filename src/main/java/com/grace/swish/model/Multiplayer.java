@@ -1,6 +1,8 @@
 package com.grace.swish.model;
 
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +15,10 @@ public class Multiplayer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long multiId;
-	private String multiType;
+	private long multiplayerId;
+	private String multiplayerType;
+	
+	@ManyToMany(mappedBy = "multiplayerTypes")
+	private Set<Game> games;
 
 }

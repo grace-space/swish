@@ -1,8 +1,7 @@
 package com.grace.swish.model;
 
 import java.io.Serializable;
-
-import jakarta.persistence.GenerationType;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,5 +19,8 @@ public class Platform implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long platformId;
 	private String platformName;
+	
+	@ManyToMany(mappedBy = "platforms")
+	private Set<Game> games;
 
 }

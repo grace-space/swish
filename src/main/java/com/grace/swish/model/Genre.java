@@ -1,6 +1,7 @@
 package com.grace.swish.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,5 +19,9 @@ public class Genre implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long genreId;
 	private String genreName;
+	
+	@ManyToMany(mappedBy = "genres")
+	private Set<Game> games;
+	
 
 }
