@@ -18,8 +18,7 @@ public class Wishlist implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long wishId;
 	
-	// i need to fix up my relationships still... 
-	@OneToOne(targetEntity = User.class)
+	@OneToOne
 	@JoinColumn(name = "userId", nullable = false)
 	private User user;
 	

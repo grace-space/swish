@@ -11,13 +11,19 @@ import lombok.*;
 @Entity
 @Table
 public class Library implements Serializable {
-	
-	private static final Long serialVersionUID = 1L;
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long libraryId;
-	
-	
+
+	@OneToOne
+	@JoinColumn(name = "userId")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "gameId")
+	private Game game;
 
 }
