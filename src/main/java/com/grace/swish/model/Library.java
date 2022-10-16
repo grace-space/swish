@@ -1,5 +1,6 @@
 package com.grace.swish.model;
 
+import java.io.Serializable;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,11 +10,14 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table
-public class Multiplayer {
+public class Library implements Serializable {
+	
+	private static final Long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long multiId;
-	private String multiType;
+	private long libraryId;
+	
+	
 
 }

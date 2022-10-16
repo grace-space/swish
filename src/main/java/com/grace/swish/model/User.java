@@ -16,7 +16,7 @@ public class User implements Serializable {
 
 	@Id
 	@Column(name = "userid")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long userId;
 	
 	@Column(unique = true, length = 16)
@@ -28,6 +28,11 @@ public class User implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String password;
 
+	
+
+	
+	
+	
 	
 	
 	

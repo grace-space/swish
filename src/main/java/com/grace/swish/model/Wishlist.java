@@ -15,7 +15,7 @@ public class Wishlist implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long wishId;
 	
 	// i need to fix up my relationships still... 
