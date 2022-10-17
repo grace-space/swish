@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grace.swish.model.Game;
+import com.grace.swish.model.Platform;
 import com.grace.swish.repository.GameRepository;
 
 @Service
@@ -34,6 +35,7 @@ public class GameService {
 		return gameRepository.findByTitle(title);
 		
 	}
+
 	
 	public void addGame(Game game) {
 		gameRepository.save(game);

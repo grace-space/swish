@@ -1,6 +1,7 @@
 package com.grace.swish.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -77,6 +78,11 @@ public class Game implements Serializable {
 			inverseJoinColumns = { @JoinColumn(name = "multiplayer_id", referencedColumnName = "multiplayerId") }
 			)
 	private Set<Multiplayer> players;
+	
+	public void addPlatform(Platform platform) {
+		this.platforms.add(platform);
+		platform.getGames().add(this);
+	}
 	
 
 }

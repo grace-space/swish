@@ -3,6 +3,8 @@ package com.grace.swish.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +22,7 @@ public class Genre implements Serializable {
 	private long genreId;
 	private String genreName;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "genres")
 	private Set<Game> games;
 	
