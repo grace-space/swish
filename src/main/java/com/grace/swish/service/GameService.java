@@ -18,9 +18,11 @@ public class GameService {
 	private GameRepository gameRepository;
 
 	public List<Game> findAllGames() {
+		
+		List<Game> games = gameRepository.findAll();
 
-		List<Game> games = new ArrayList<Game>();
-		gameRepository.findAll().forEach(games::add);
+//		List<Game> games = new ArrayList<Game>();
+//		gameRepository.findAll().forEach(games::add);
 		return games;
 
 	}

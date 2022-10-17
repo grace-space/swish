@@ -79,10 +79,5 @@ public class Game implements Serializable {
 			)
 	private Set<Multiplayer> players;
 	
-	public void addPlatform(Platform platform) {
-		this.platforms.add(platform);
-		platform.getGames().add(this);
-	}
-	
 
 }

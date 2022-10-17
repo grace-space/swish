@@ -28,7 +28,7 @@ public class GameController {
 
 	@ResponseBody
 	@GetMapping("/games")
-	public List<Game> findAllGames(@RequestParam(required = false) String title) {
+	public List<Game> findAllGames() {
 
 		List<Game> games = gameService.findAllGames();
 		return games;
@@ -44,6 +44,7 @@ public class GameController {
 //		if(title == null) {
 //			List<Game> games = gameService.findAllGames();
 //		} else {
+	
 //		}
 //		return games;
 //		
