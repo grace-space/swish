@@ -76,7 +76,7 @@ public class Game implements Serializable {
 			joinColumns = { @JoinColumn(name = "game_id", referencedColumnName = "gameId") },
 			inverseJoinColumns = { @JoinColumn(name = "multiplayer_id", referencedColumnName = "multiplayerId") }
 			)
-	private Set<Multiplayer> multiplayers;
+	private Set<Multiplayer> players;
 	
 
 }

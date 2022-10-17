@@ -16,7 +16,7 @@ public class GameService {
 	@Autowired
 	private GameRepository gameRepository;
 
-	public List<Game> getAllGames() {
+	public List<Game> findAllGames() {
 
 		List<Game> games = new ArrayList<Game>();
 		gameRepository.findAll().forEach(games::add);
@@ -24,7 +24,7 @@ public class GameService {
 
 	}
 	
-	public Optional<Game> getGameById(long gameId) {
+	public Optional<Game> findGameById(long gameId) {
 		return gameRepository.findById(gameId);
 		
 	}
