@@ -10,6 +10,6 @@ import com.grace.swish.model.Wishlist;
 @Repository
 public interface WishlistRepository extends JpaRepository<Wishlist, Long>{
 	
-//	Set<Wishlist> findAllByUserId(long userId);
+	Set<Wishlist> findAllByUserUserId(long userId);
 
 }

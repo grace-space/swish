@@ -10,6 +10,6 @@ import com.grace.swish.model.Library;
 @Repository
 public interface LibraryRepository extends JpaRepository<Library, Long>{
 	
-//	Set<Library> findAllByUserId(long userId);
+	Set<Library> findAllByUserUserId(long userId);
 
 }
