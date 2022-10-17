@@ -1,6 +1,7 @@
 package com.grace.swish.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,12 +20,12 @@ public class Wishlist implements Serializable {
 	private long wishlistId;
 	
 	@OneToOne
-	@JoinColumn(name = "userId", nullable = false)
+	@JoinColumn(name = "userId")
 	private User user;
 	
-	@ManyToOne
+	@ManyToMany
 	@JoinColumn(name = "gameId")
-	private Game game;
+	private Set<Game> games;
 	
 	
 	

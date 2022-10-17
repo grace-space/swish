@@ -1,6 +1,7 @@
 package com.grace.swish.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,8 +23,8 @@ public class Library implements Serializable {
 	@JoinColumn(name = "userId")
 	private User user;
 
-	@ManyToOne
+	@ManyToMany
 	@JoinColumn(name = "gameId")
-	private Game game;
+	private Set<Game> games;
 
 }

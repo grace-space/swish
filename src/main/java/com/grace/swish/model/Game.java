@@ -27,10 +27,10 @@ public class Game implements Serializable {
 	
 	private String imgUrl;
 	
-	@ManyToMany(mappedBy = "game")
+	@ManyToMany(mappedBy = "games")
 	private Set<Wishlist> wishlists;
 	
-	@ManyToMany(mappedBy = "game")
+	@ManyToMany(mappedBy = "games")
 	private Set<Library> libraries;
 	
 	@ManyToMany
@@ -51,7 +51,7 @@ public class Game implements Serializable {
 	
 	@ManyToMany
 	@JoinColumn(name = "multiplayerId")
-	private Set<Multiplayer> multiplayerTypes;
+	private Set<Multiplayer> multiplayers;
 	
 
 }
