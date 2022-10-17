@@ -24,7 +24,12 @@ public class Wishlist implements Serializable {
 	private User user;
 	
 	@ManyToMany
-	@JoinColumn(name = "gameId")
+//	@JoinColumn(name = "gameId")
+	@JoinTable(
+			name = "wishlist_games",
+			joinColumns = { @JoinColumn(name = "wishlist_id", referencedColumnName = "wishlistId") },
+			inverseJoinColumns = { @JoinColumn(name = "game_id", referencedColumnName = "gameId") }
+			)
 	private Set<Game> games;
 	
 	

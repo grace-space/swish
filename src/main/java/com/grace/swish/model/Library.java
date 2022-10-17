@@ -24,7 +24,12 @@ public class Library implements Serializable {
 	private User user;
 
 	@ManyToMany
-	@JoinColumn(name = "gameId")
+//	@JoinColumn(name = "gameId")
+	@JoinTable(
+			name = "library_games",
+			joinColumns = { @JoinColumn(name = "library_id", referencedColumnName = "libraryId") },
+			inverseJoinColumns = { @JoinColumn(name = "game_id", referencedColumnName = "gameId") }
+			)
 	private Set<Game> games;
 
 }
