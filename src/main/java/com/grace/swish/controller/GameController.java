@@ -69,33 +69,33 @@ public class GameController {
 	
 	@GetMapping("/games/viewAll")
 	public String findsAllGames(@RequestParam(required = false) String title,
-			@RequestParam(required = false) String platformName, 
-			@RequestParam(required = false) String formatType,
+			@RequestParam(required = false) String platform, 
+			@RequestParam(required = false) String format,
 			Model model) {
 		
-		if (title == null && platformName == null && formatType == null) {
+		if (title == null && platform == null && format == null) {
 			games = gameService.findAllGames();
 			model.addAttribute("gameList", games);
-		} else if (platformName == null && formatType == null) {
+		} else if (platform == null && format == null) {
 			games = gameService.findGamesByTitle(title);
 			model.addAttribute("gameList", games);
-		} else if (title == null & formatType == null) {
-			games = gameService.findGamesByPlatform(platformName);
+		} else if (title == null & format == null) {
+			games = gameService.findGamesByPlatform(platform);
 			model.addAttribute("gameList", games);
-		} else if (title == null && platformName == null) {
-			games = gameService.findGamesByFormat(formatType);
+		} else if (title == null && platform == null) {
+			games = gameService.findGamesByFormat(format);
 			model.addAttribute("gameList", games);
-		} else if (platformName == null) {
-			games = gameService.findGamesByTitleAndFormat(title, formatType);
+		} else if (platform == null) {
+			games = gameService.findGamesByTitleAndFormat(title, format);
 			model.addAttribute("gameList", games);
 		} else if (title == null) {
-			games = gameService.findGamesByPlatformAndFormat(platformName, formatType);
+			games = gameService.findGamesByPlatformAndFormat(platform, format);
 			model.addAttribute("gameList", games);
-		} else if (formatType == null) {
-			games = gameService.findGamesByTitleAndPlatform(title, platformName);
+		} else if (format == null) {
+			games = gameService.findGamesByTitleAndPlatform(title, platform);
 			model.addAttribute("gameList", games);
 		} else {
-			games = gameService.findGamesByTitlePlatformAndFormat(title, platformName, formatType);
+			games = gameService.findGamesByTitlePlatformAndFormat(title, platform, format);
 			model.addAttribute("gameList", games);
 		}
 		
