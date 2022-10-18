@@ -18,7 +18,7 @@ public class Multiplayer {
 	private long multiplayerId;
 	private String multiplayerType;
 	
-	@ManyToMany(mappedBy = "players")
-	private Set<Game> games;
+//	@ManyToMany(mappedBy = "players")
+//	private Set<Game> games;
 
 }

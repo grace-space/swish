@@ -20,8 +20,8 @@ public class Format implements Serializable {
 	private long formatId;
 	private String formatType;
 	
-	@ManyToMany(mappedBy = "formats")
-	private Set<Game> games;
+//	@ManyToMany(mappedBy = "formats")
+//	private Set<Game> games;
 	
 
 }

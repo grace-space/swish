@@ -12,6 +12,7 @@ public interface PlatformRepository extends JpaRepository<Platform, Long>{
 	
 	Platform findByPlatformName(String platformName);
 
-	List<Platform> findPlatformsByGamesGameId(Long gameId);
+	// changed to unidirectional so can no longer use this
+//	List<Platform> findPlatformsByGamesGameId(Long gameId);
 	
 }

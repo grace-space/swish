@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.grace.swish.model.Game;
-import com.grace.swish.model.Platform;
 import com.grace.swish.service.GameService;
 
 @Controller
@@ -78,7 +77,6 @@ public class GameController {
 	public void createGame(@RequestBody Game game) {
 		gameService.addGame(game);
 	}
-
 
 	@ResponseBody
 	@DeleteMapping("/games/{gameId}")

@@ -20,7 +20,7 @@ public class Retailer implements Serializable {
 	private long retailerId;
 	private String retailerName;
 	
-	@ManyToMany(mappedBy = "retailers")
-	private Set<Game> games;
+//	@ManyToMany(mappedBy = "retailers")
+//	private Set<Game> games;
 
 }

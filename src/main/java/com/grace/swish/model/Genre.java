@@ -22,9 +22,8 @@ public class Genre implements Serializable {
 	private long genreId;
 	private String genreName;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "genres")
-	private Set<Game> games;
+//	@ManyToMany(mappedBy = "genres")
+//	private Set<Game> games;
 	
 
 }
