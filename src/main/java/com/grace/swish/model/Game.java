@@ -3,6 +3,7 @@ package com.grace.swish.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
@@ -29,14 +30,17 @@ public class Game implements Serializable {
 	
 	private String imgUrl;
 	
-	@ManyToMany(mappedBy = "games")
-	private Set<Wishlist> wishlists;
+	@Column(columnDefinition = "text")
+	private String description;
+
+	// changing these to be unidirectional 
+//	@ManyToMany(mappedBy = "games")
+//	private Set<Wishlist> wishlists;
 	
-	@ManyToMany(mappedBy = "games")
-	private Set<Library> libraries;
+//	@ManyToMany(mappedBy = "games")
+//	private Set<Library> libraries;
 	
 	@ManyToMany
-//	@JoinColumn(name = "genreId")
 	@JoinTable(
 			name = "game_genres",
 			joinColumns = { @JoinColumn(name = "game_id", referencedColumnName = "gameId") },
@@ -45,12 +49,12 @@ public class Game implements Serializable {
 	private Set<Genre> genres;
 	
 	@ManyToMany
-	@JsonManagedReference
 	@JoinTable(
 			name = "game_platforms",
 			joinColumns = { @JoinColumn(name = "game_id", referencedColumnName = "gameId") },
 			inverseJoinColumns = { @JoinColumn(name = "platform_id", referencedColumnName = "platformId") }
 			)
+	@JsonManagedReference
 	private Set<Platform> platforms;
 	
 	@ManyToMany
