@@ -58,7 +58,7 @@ public class GameController {
 	}
 
 	@ResponseBody
-	@GetMapping("/gamesTitle/{gameTitle}")
+	@GetMapping("/gameTitle/{gameTitle}")
 	public Game findGameByGameTitle(@PathVariable("gameTitle") String gameTitle) {
 		Game game = gameService.findGameByTitle(gameTitle);
 
@@ -78,6 +78,7 @@ public class GameController {
 	public void createGame(@RequestBody Game game) {
 		gameService.addGame(game);
 	}
+
 
 	@ResponseBody
 	@DeleteMapping("/games/{gameId}")

@@ -43,6 +43,8 @@ public class PlatformService {
 		
 	}
 	
-
+	public Platform addPlatform(Platform platform) {
+	      return platformRepository.save(platform);
+	   }
 
 }

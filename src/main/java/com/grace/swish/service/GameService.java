@@ -1,6 +1,5 @@
 package com.grace.swish.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grace.swish.model.Game;
-import com.grace.swish.model.Platform;
 import com.grace.swish.repository.GameRepository;
 
 @Service
@@ -27,12 +25,16 @@ public class GameService {
 
 	}
 	
+	
+	
 	public Optional<Game> findGameById(long gameId) {
-		return gameRepository.findById(gameId);
+//		return gameRepository.findById(gameId);
+		Optional<Game> game = gameRepository.findById(gameId);
+		System.out.print(game.get());
+		return game;
 		
 	}
 	
-	// not sure why this does not have Optional
 	public Game findGameByTitle(String title) {
 		return gameRepository.findByTitle(title);
 		
