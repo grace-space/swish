@@ -30,6 +30,15 @@ public class GameController {
 	private List<Game> games;
 
 
+	// testing library
+	@ResponseBody
+	@GetMapping("/api/library")
+	public List<Game> findGamesBylibrary(@RequestParam Long libraryId) {
+		games = gameService.findGamesByLibrary(libraryId);
+		return games;
+		
+	}
+	
 
 	/*
 	 * finds all games if no criteria, otherwise finds games based on params

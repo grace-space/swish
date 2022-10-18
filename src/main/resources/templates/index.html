@@ -19,6 +19,7 @@
 			<td th:text="${game.title}" />
 			<td th:text="${game.msrp}" />
 			<td th:text="${#strings.listJoin(game.platforms.![platformName],', ')}" />
+			<td th:text="${game.libraries}" />
 		</tr>
 	</table>
 

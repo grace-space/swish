@@ -17,7 +17,14 @@ public class GameService {
 	private GameRepository gameRepository;
 	
 	private List<Game> games;
-
+	
+	
+	// testing library
+	public List<Game> findGamesByLibrary(long libraryId) {
+		games = gameRepository.findGamesByLibrariesLibraryId(libraryId);
+		return games;
+	}
+	
 	public List<Game> findAllGames() {
 
 		games = gameRepository.findAll();
@@ -28,10 +35,11 @@ public class GameService {
 	public Optional<Game> findGameById(long gameId) {
 //		return gameRepository.findById(gameId);
 		Optional<Game> game = gameRepository.findById(gameId);
-		System.out.print(game.get());
+//		System.out.print(game.get());
 		return game;
 
 	}
+
 	
 	public List<Game> findGamesByTitle(String title) {
 		

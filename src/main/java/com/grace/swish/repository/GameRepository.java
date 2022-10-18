@@ -26,6 +26,7 @@ public interface GameRepository extends JpaRepository<Game, Long>, JpaSpecificat
 	List<Game> findGamesByGenresGenreName(String genreName);
 	List<Game> findGamesByFormatsFormatType(String formatType);
 	List<Game> findGamesByRetailersRetailerName(String retailerName);
+
 	
 	/*
 	 * method queries for all field searches
@@ -38,6 +39,8 @@ public interface GameRepository extends JpaRepository<Game, Long>, JpaSpecificat
 	List<Game> findGamesByPlatformsPlatformNameAndFormatsFormatType(String platformName, String formatType);
 	List<Game> findByTitleContainingAndPlatformsPlatformNameAndFormatsFormatType(String title, String platformName, String formatType);
 	
+	// not sure if we need below
+	List<Game> findGamesByLibrariesLibraryId(Long libraryId);
 	
 	
 }

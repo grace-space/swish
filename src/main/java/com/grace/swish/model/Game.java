@@ -37,8 +37,8 @@ public class Game implements Serializable {
 //	@ManyToMany(mappedBy = "games")
 //	private Set<Wishlist> wishlists;
 	
-//	@ManyToMany(mappedBy = "games")
-//	private Set<Library> libraries;
+	@ManyToMany(mappedBy = "games")
+	private Set<Library> libraries;
 	
 	@ManyToMany
 	@JoinTable(
