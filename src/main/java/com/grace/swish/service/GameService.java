@@ -69,10 +69,25 @@ public class GameService {
 		return games;
 	}
 	
-	public List<Game> findGamesByTitleAndPlatformAndGenreAndFormatAndRetailer(String title, String platformName, String genreName, String formatType, String retailerName) {
-		games = gameRepository.findByTitleContainingAndPlatformsPlatformNameAndGenresGenreNameAndFormatsFormatTypeAndRetailersRetailerName(title, platformName, genreName, formatType, retailerName);
+	public List<Game> findGamesByTitleAndFormat(String title, String formatName) {
+		games = gameRepository.findByTitleContainingAndFormatsFormatType(title, formatName);
 		return games;
 	}
+	
+	public List<Game> findGamesByPlatformAndFormat(String platformName, String formatType) {
+		games = gameRepository.findGamesByPlatformsPlatformNameAndFormatsFormatType(platformName, formatType);
+		return games;
+	}
+	
+	public List<Game> findGamesByTitlePlatformAndFormat(String title, String platformName, String formatType) {
+		games = gameRepository.findByTitleContainingAndPlatformsPlatformNameAndFormatsFormatType(title, platformName, formatType);
+		return games;
+	}
+	
+//	public List<Game> findGamesByTitleAndPlatformAndGenreAndFormatAndRetailer(String title, String platformName, String genreName, String formatType, String retailerName) {
+//		games = gameRepository.findByTitleContainingAndPlatformsPlatformNameAndGenresGenreNameAndFormatsFormatTypeAndRetailersRetailerName(title, platformName, genreName, formatType, retailerName);
+//		return games;
+//	}
 
 
 //	public void addGame(Game game) {

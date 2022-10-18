@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,28 +29,80 @@ public class GameController {
 
 	private List<Game> games;
 
+
+
 	/*
-	 * finds all games if no criteria, otherwise finds games based on title search
-	 * and/or field filters
+	 * finds all games if no criteria, otherwise finds games based on params
 	 */
 	@ResponseBody
 	@GetMapping("/games")
-	public List<Game> findAllGames(@RequestParam(required = false) String title,
-			@RequestParam(required = false) String platform) {
-
-		if (title == null && platform == null) {
+	public List<Game> findGames(@RequestParam(required = false) String title,
+			@RequestParam(required = false) String platform, 
+			@RequestParam(required = false) String format) {
+		
+		if (title == null && platform == null && format == null) {
 			games = gameService.findAllGames();
 			return games;
-		} else if (platform == null) {
+		} else if (platform == null && format == null) {
 			games = gameService.findGamesByTitle(title);
 			return games;
-		} else if (title == null) {
+		} else if (title == null & format == null) {
 			games = gameService.findGamesByPlatform(platform);
 			return games;
-		} else {
+		} else if (title == null && platform == null) {
+			games = gameService.findGamesByFormat(format);
+			return games;
+		} else if (platform == null) {
+			games = gameService.findGamesByTitleAndFormat(title, format);
+			return games;
+		} else if (title == null) {
+			games = gameService.findGamesByPlatformAndFormat(platform, format);
+			return games;
+		} else if (format == null) {
 			games = gameService.findGamesByTitleAndPlatform(title, platform);
 			return games;
+		} else {
+			games = gameService.findGamesByTitlePlatformAndFormat(title, platform, format);
+			return games;
 		}
+	}
+	
+	@GetMapping("/games/viewAll")
+	public String findsAllGames(@RequestParam(required = false) String title,
+			@RequestParam(required = false) String platform, 
+			@RequestParam(required = false) String format,
+			Model model) {
+		
+		if (title == null && platform == null && format == null) {
+			games = gameService.findAllGames();
+			model.addAttribute("gameList", games);
+		} else if (platform == null && format == null) {
+			games = gameService.findGamesByTitle(title);
+			model.addAttribute("gameList", games);
+		} else if (title == null & format == null) {
+			games = gameService.findGamesByPlatform(platform);
+			model.addAttribute("gameList", games);
+		} else if (title == null && platform == null) {
+			games = gameService.findGamesByFormat(format);
+			model.addAttribute("gameList", games);
+		} else if (platform == null) {
+			games = gameService.findGamesByTitleAndFormat(title, format);
+			model.addAttribute("gameList", games);
+		} else if (title == null) {
+			games = gameService.findGamesByPlatformAndFormat(platform, format);
+			model.addAttribute("gameList", games);
+		} else if (format == null) {
+			games = gameService.findGamesByTitleAndPlatform(title, platform);
+			model.addAttribute("gameList", games);
+		} else {
+			games = gameService.findGamesByTitlePlatformAndFormat(title, platform, format);
+			model.addAttribute("gameList", games);
+		}
+		
+		return "allgames";
+		
+		
+		
 	}
 
 	@ResponseBody
@@ -65,6 +119,30 @@ public class GameController {
 		return games;
 
 	}
+	
+	/*
+	 * finds all games if no criteria, otherwise finds games based on title search
+	 * and/or field filters
+	 */
+//	@ResponseBody
+//	@GetMapping("/games")
+//	public List<Game> findAllGames(@RequestParam(required = false) String title,
+//			@RequestParam(required = false) String platform) {
+//
+//		if (title == null && platform == null) {
+//			games = gameService.findAllGames();
+//			return games;
+//		} else if (platform == null) {
+//			games = gameService.findGamesByTitle(title);
+//			return games;
+//		} else if (title == null) {
+//			games = gameService.findGamesByPlatform(platform);
+//			return games;
+//		} else {
+//			games = gameService.findGamesByTitleAndPlatform(title, platform);
+//			return games;
+//		}
+//	}
 
 	/*
 	 * returns all games if no searched title or returns games containing search

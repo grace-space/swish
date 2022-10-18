@@ -53,11 +53,11 @@ class DemoCommandLineRunner implements CommandLineRunner {
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl condimentum id venenatis a condimentum vitae sapien pellentesque. Vulputate ut pharetra sit amet. Felis eget nunc lobortis mattis aliquam. Rhoncus mattis rhoncus urna neque viverra justo. Ultrices sagittis orci a scelerisque. Libero nunc consequat interdum varius sit amet. Mauris nunc congue nisi vitae suscipit tellus. Consequat id porta nibh venenatis cras sed felis. Enim nulla aliquet porttitor lacus luctus accumsan. Vitae et leo duis ut diam. Turpis in eu mi bibendum neque egestas congue quisque. Quis lectus nulla at volutpat.");
 
 		Game game2 = new Game();
-		game2.setTitle("Wario");
+		game2.setTitle("Call of Duty");
 		game2.setRating(9);
 		game2.setMsrp(59.99);
 		game2.setImgUrl("http");
-		game2.setPlatforms(Set.of(platform1));
+		game2.setPlatforms(Set.of(platform2));
 		game2.setDescription(
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl condimentum id venenatis a condimentum vitae sapien pellentesque. Vulputate ut pharetra sit amet. Felis eget nunc lobortis mattis aliquam. Rhoncus mattis rhoncus urna neque viverra justo. Ultrices sagittis orci a scelerisque. Libero nunc consequat interdum varius sit amet. Mauris nunc congue nisi vitae suscipit tellus. Consequat id porta nibh venenatis cras sed felis. Enim nulla aliquet porttitor lacus luctus accumsan. Vitae et leo duis ut diam. Turpis in eu mi bibendum neque egestas congue quisque. Quis lectus nulla at volutpat.");
 
