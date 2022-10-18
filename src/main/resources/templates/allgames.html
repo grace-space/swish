@@ -11,15 +11,19 @@
 	<br />
 	<table border="1">
 		<tr>
-			<td>Game Title</td>
-			<td>MSRP</td>
-			<td>Platform</td>
+			<th>Game Title</th>
+			<th>MSRP</th>
+			<th>Platform</th>
 		</tr>
 		<tr th:each="game : ${gameList}">
 			<td th:text="${game.title}" />
 			<td th:text="${game.msrp}" />
-			<td th:text="${game.platforms}" />
+			<td th:text="${#strings.listJoin(game.platforms.![platformName],', ')}" />
 		</tr>
 	</table>
+
+
+
+
 </body>
 </html>
