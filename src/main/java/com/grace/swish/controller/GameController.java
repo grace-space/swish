@@ -18,76 +18,106 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grace.swish.model.Game;
 import com.grace.swish.service.GameService;
 
-@Controller
+@RestController
 @RequestMapping("/api")
 public class GameController {
 
 	@Autowired
 	GameService gameService;
 
-	@ResponseBody
+
+	/*
+	 * finds all games if no criteria, otherwise finds games based on title search and/or field filters
+	 */
 	@GetMapping("/games")
-	public List<Game> findAllGames() {
-
-		List<Game> games = gameService.findAllGames();
-		return games;
-
+	public List<Game> findAllGames(@RequestParam(required = false) String title, @RequestParam(required = false) String platform) {
+		List<Game> games;
+		
+		if(title == null && platform == null) {
+			games = gameService.findAllGames();
+			return games;
+		} else if(platform == null) {
+			games = gameService.findGamesByTitle(title);
+			return games;
+		} else if(title == null) {
+			games = gameService.findGamesByPlatformName(platform);
+			return games;
+		} else {
+			games = gameService.findGamesByTitleAndPlatform(title, platform);
+			return games;
+		}
 	}
-
-	// to edit later -- if i want to add some search function for
-	// findTitleContaining ...
-//	@ResponseBody
-//	@GetMapping("/games")
-//	public List<Game> findAllGames(@RequestParam(required = false) String title) {
-//		
-//		if(title == null) {
-//			List<Game> games = gameService.findAllGames();
-//		} else {
 	
-//		}
-//		return games;
-//		
-//	}
+	
 
-	@ResponseBody
-	@GetMapping("/games/{id}")
+	@GetMapping("/game/{id}")
 	public Optional<Game> findGame(@PathVariable("id") long gameId) {
 		Optional<Game> game = gameService.findGameById(gameId);
 		return game;
 	}
+	
+	@GetMapping("/platforms/{platformId}/games")
+	public List<Game> getAllGamesByPlatformId(@PathVariable(value = "platformId") long platformId) {
 
-	@ResponseBody
-	@GetMapping("/gameTitle/{gameTitle}")
-	public Game findGameByGameTitle(@PathVariable("gameTitle") String gameTitle) {
-		Game game = gameService.findGameByTitle(gameTitle);
+		List<Game> games = gameService.getAllGamesByPlatformId(platformId);
+		return games;
 
-		return game;
 	}
-
-	// trying out requestparam
-//	@GetMapping("/games1")
-//	public Game findGameByGameTitle(@RequestParam String title) {
-//		Game game = gameService.findGameByTitle(title);
+	
+	
+	/*
+	 * returns all games if no searched title or returns games containing search terms
+	 * this has been replaced with the other method that has more criteria
+	 */
+//	@GetMapping("/games")
+//	public List<Game> findGames(@RequestParam(required = false) String title) {
+//		List<Game> games;
 //		
+//		if(title == null) {
+//			games = gameService.findAllGames();
+//			return games;
+//		} else {
+//			games = gameService.findGamesByTitle(title);
+//			return games;
+//		}
+//		
+//	}
+	
+
+//	@GetMapping("/game")
+//	public List<Game> findGamesByPlatform(@RequestParam(required = false) String platform) {
+//		List<Game> games;
+//		
+//		if(platform == null) {
+//			games = gameService.findAllGames();
+//			return games;
+//		} else {
+//			games = gameService.findGamesByPlatformName(platform);
+//			return games;
+//		}
+//	}
+
+//	@GetMapping("/gameTitle/{gameTitle}")
+//	public Game findGameByGameTitle(@PathVariable("gameTitle") String gameTitle) {
+//		Game game = gameService.findGameByTitle(gameTitle);
+//
 //		return game;
 //	}
 
-	@ResponseBody
-	@PostMapping("/games")
-	public void createGame(@RequestBody Game game) {
-		gameService.addGame(game);
-	}
+//	@PostMapping("/games")
+//	public void createGame(@RequestBody Game game) {
+//		gameService.addGame(game);
+//	}
 
-	@ResponseBody
-	@DeleteMapping("/games/{gameId}")
-	public void deleteGame(@PathVariable("gameId") long gameId) {
-		gameService.deleteGame(gameId);
-	}
+//	@DeleteMapping("/games/{gameId}")
+//	public void deleteGame(@PathVariable("gameId") long gameId) {
+//		gameService.deleteGame(gameId);
+//	}
 
-	@ResponseBody
-	@DeleteMapping("/games")
-	public void deleteAllGames() {
-		gameService.deleteAllGames();
-	}
+//	@ResponseBody
+//	@DeleteMapping("/games")
+//	public void deleteAllGames() {
+//		gameService.deleteAllGames();
+//	}
 
 }

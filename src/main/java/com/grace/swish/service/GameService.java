@@ -16,35 +16,51 @@ public class GameService {
 	private GameRepository gameRepository;
 
 	public List<Game> findAllGames() {
-		
-		List<Game> games = gameRepository.findAll();
 
-//		List<Game> games = new ArrayList<Game>();
-//		gameRepository.findAll().forEach(games::add);
+		List<Game> games = gameRepository.findAll();
 		return games;
 
 	}
 	
-	
-	
+	public List<Game> findGamesByTitle(String title) {
+		List<Game> games = gameRepository.findByTitleContaining(title);
+			return games;
+		
+	}
+
 	public Optional<Game> findGameById(long gameId) {
 //		return gameRepository.findById(gameId);
 		Optional<Game> game = gameRepository.findById(gameId);
 		System.out.print(game.get());
 		return game;
-		
-	}
-	
-	public Game findGameByTitle(String title) {
-		return gameRepository.findByTitle(title);
-		
+
 	}
 
+//	public Game findGameByTitle(String title) {
+//		return gameRepository.findByTitle(title);
+//
+//	}
 	
-	public void addGame(Game game) {
-		gameRepository.save(game);
+	public List<Game> findGamesByPlatformName(String platformName) {
+		List<Game> games = gameRepository.findGamesByPlatformsPlatformName(platformName);
+		return games;
 	}
 	
+	public List<Game> findGamesByTitleAndPlatform(String title, String platformName) {
+		List<Game> games = gameRepository.findByTitleContainingAndPlatformsPlatformName(title, platformName);
+		return games;
+	}
+
+	public List<Game> getAllGamesByPlatformId(long platformId) {
+		List<Game> games = gameRepository.findGamesByPlatformsPlatformId(platformId);
+		return games;
+
+	}
+
+//	public void addGame(Game game) {
+//		gameRepository.save(game);
+//	}
+
 	// not sure if i need this method right now
 //	public void updateGame(long gameId, Game game) {
 //		Optional<Game> gameData = gameRepository.findById(gameId);
@@ -62,13 +78,13 @@ public class GameService {
 //			gameRepository.save(game2);
 //		}
 //	}
-	
-	public void deleteGame(long gameId) {
-		gameRepository.deleteById(gameId);
-	}
-	
-	public void deleteAllGames() {
-		gameRepository.deleteAll();
-	}
+
+//	public void deleteGame(long gameId) {
+//		gameRepository.deleteById(gameId);
+//	}
+
+//	public void deleteAllGames() {
+//		gameRepository.deleteAll();
+//	}
 
 }
