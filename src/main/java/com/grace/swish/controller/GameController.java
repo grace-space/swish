@@ -21,7 +21,7 @@ import com.grace.swish.model.Game;
 import com.grace.swish.service.GameService;
 
 @Controller
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class GameController {
 
 	@Autowired
@@ -35,7 +35,7 @@ public class GameController {
 	 * finds all games if no criteria, otherwise finds games based on params
 	 */
 	@ResponseBody
-	@GetMapping("/games")
+	@GetMapping("/api/games")
 	public List<Game> findGames(@RequestParam(required = false) String title,
 			@RequestParam(required = false) String platform, 
 			@RequestParam(required = false) String format) {
@@ -67,7 +67,7 @@ public class GameController {
 		}
 	}
 	
-	@GetMapping("/games/viewAll")
+	@GetMapping("/index")
 	public String findsAllGames(@RequestParam(required = false) String title,
 			@RequestParam(required = false) String platform, 
 			@RequestParam(required = false) String format,
@@ -99,7 +99,7 @@ public class GameController {
 			model.addAttribute("gameList", games);
 		}
 		
-		return "allgames";
+		return "index";
 		
 		
 		
