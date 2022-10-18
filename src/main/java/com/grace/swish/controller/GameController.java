@@ -18,56 +18,57 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grace.swish.model.Game;
 import com.grace.swish.service.GameService;
 
-@RestController
+@Controller
 @RequestMapping("/api")
 public class GameController {
 
 	@Autowired
-	GameService gameService;
+	private GameService gameService;
 
+	private List<Game> games;
 
 	/*
-	 * finds all games if no criteria, otherwise finds games based on title search and/or field filters
+	 * finds all games if no criteria, otherwise finds games based on title search
+	 * and/or field filters
 	 */
+	@ResponseBody
 	@GetMapping("/games")
-	public List<Game> findAllGames(@RequestParam(required = false) String title, @RequestParam(required = false) String platform) {
-		List<Game> games;
-		
-		if(title == null && platform == null) {
+	public List<Game> findAllGames(@RequestParam(required = false) String title,
+			@RequestParam(required = false) String platform) {
+
+		if (title == null && platform == null) {
 			games = gameService.findAllGames();
 			return games;
-		} else if(platform == null) {
+		} else if (platform == null) {
 			games = gameService.findGamesByTitle(title);
 			return games;
-		} else if(title == null) {
-			games = gameService.findGamesByPlatformName(platform);
+		} else if (title == null) {
+			games = gameService.findGamesByPlatform(platform);
 			return games;
 		} else {
 			games = gameService.findGamesByTitleAndPlatform(title, platform);
 			return games;
 		}
 	}
-	
-	
 
+	@ResponseBody
 	@GetMapping("/game/{id}")
 	public Optional<Game> findGame(@PathVariable("id") long gameId) {
 		Optional<Game> game = gameService.findGameById(gameId);
 		return game;
 	}
-	
+
+	@ResponseBody
 	@GetMapping("/platforms/{platformId}/games")
 	public List<Game> getAllGamesByPlatformId(@PathVariable(value = "platformId") long platformId) {
-
-		List<Game> games = gameService.getAllGamesByPlatformId(platformId);
+		games = gameService.getAllGamesByPlatformId(platformId);
 		return games;
 
 	}
-	
-	
+
 	/*
-	 * returns all games if no searched title or returns games containing search terms
-	 * this has been replaced with the other method that has more criteria
+	 * returns all games if no searched title or returns games containing search
+	 * terms this has been replaced with the other method that has more criteria
 	 */
 //	@GetMapping("/games")
 //	public List<Game> findGames(@RequestParam(required = false) String title) {
@@ -82,7 +83,6 @@ public class GameController {
 //		}
 //		
 //	}
-	
 
 //	@GetMapping("/game")
 //	public List<Game> findGamesByPlatform(@RequestParam(required = false) String platform) {

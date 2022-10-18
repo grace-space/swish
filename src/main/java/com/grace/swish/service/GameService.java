@@ -14,20 +14,16 @@ public class GameService {
 
 	@Autowired
 	private GameRepository gameRepository;
+	
+	private List<Game> games;
 
 	public List<Game> findAllGames() {
 
-		List<Game> games = gameRepository.findAll();
+		games = gameRepository.findAll();
 		return games;
 
 	}
 	
-	public List<Game> findGamesByTitle(String title) {
-		List<Game> games = gameRepository.findByTitleContaining(title);
-			return games;
-		
-	}
-
 	public Optional<Game> findGameById(long gameId) {
 //		return gameRepository.findById(gameId);
 		Optional<Game> game = gameRepository.findById(gameId);
@@ -35,27 +31,49 @@ public class GameService {
 		return game;
 
 	}
-
-//	public Game findGameByTitle(String title) {
-//		return gameRepository.findByTitle(title);
-//
-//	}
 	
-	public List<Game> findGamesByPlatformName(String platformName) {
-		List<Game> games = gameRepository.findGamesByPlatformsPlatformName(platformName);
+	public List<Game> findGamesByTitle(String title) {
+		games = gameRepository.findByTitleContaining(title);
+			return games;
+		
+	}
+	
+	public List<Game> getAllGamesByPlatformId(long platformId) {
+		games = gameRepository.findGamesByPlatformsPlatformId(platformId);
+		return games;
+
+	}
+	
+	public List<Game> findGamesByPlatform(String platformName) {
+		games = gameRepository.findGamesByPlatformsPlatformName(platformName);
+		return games;
+	}
+	
+	public List<Game> findGamesByGenre(String genreName) {
+		games = gameRepository.findGamesByGenresGenreName(genreName);
+		return games;
+	}
+	
+	public List<Game> findGamesByFormat(String formatType) {
+		games = gameRepository.findGamesByFormatsFormatType(formatType);
+		return games;
+	}
+	
+	public List<Game> findGamesByRetailer(String retailerName) {
+		games = gameRepository.findGamesByRetailersRetailerName(retailerName);
 		return games;
 	}
 	
 	public List<Game> findGamesByTitleAndPlatform(String title, String platformName) {
-		List<Game> games = gameRepository.findByTitleContainingAndPlatformsPlatformName(title, platformName);
+		games = gameRepository.findByTitleContainingAndPlatformsPlatformName(title, platformName);
+		return games;
+	}
+	
+	public List<Game> findGamesByTitleAndPlatformAndGenreAndFormatAndRetailer(String title, String platformName, String genreName, String formatType, String retailerName) {
+		games = gameRepository.findByTitleContainingAndPlatformsPlatformNameAndGenresGenreNameAndFormatsFormatTypeAndRetailersRetailerName(title, platformName, genreName, formatType, retailerName);
 		return games;
 	}
 
-	public List<Game> getAllGamesByPlatformId(long platformId) {
-		List<Game> games = gameRepository.findGamesByPlatformsPlatformId(platformId);
-		return games;
-
-	}
 
 //	public void addGame(Game game) {
 //		gameRepository.save(game);

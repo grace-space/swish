@@ -3,12 +3,16 @@ package com.grace.swish.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.grace.swish.model.Game;
 
+
+
 @Repository
-public interface GameRepository extends JpaRepository<Game, Long> {
+public interface GameRepository extends JpaRepository<Game, Long>, JpaSpecificationExecutor<Game>, PagingAndSortingRepository<Game, Long> {
 	
 //	Game findByTitle(String name);
 	
@@ -16,23 +20,22 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 	 * method queries by single fields
 	 */
 	List<Game> findByTitleContaining(String title);
-	
 	List<Game> findGamesByPlatformsPlatformId(Long platformId);
-	
-	List<Game> findGamesByPlatformsPlatformName(String platformName);
-	
+	List<Game> findGamesByPlatformsPlatformName(String platform);
 	List<Game> findGamesByGenresGenreName(String genreName);
-	
 	List<Game> findGamesByFormatsFormatType(String formatType);
-	
 	List<Game> findGamesByRetailersRetailerName(String retailerName);
 	
 	/*
-	 * method queries for combination searches
+	 * method queries for all field searches
 	 */
-	List<Game> findByTitleContainingAndPlatformsPlatformName(String title, String platformName);
-	List<Game> findByTitleContainingAndPlatformsPlatformNameAndGenresGenreName(String title, String platformName, String genreName);
-	List<Game> findByTitleContainingAndPlatformsPlatformNameAndGenresGenreNameAndFormatsFormatType(String title, String platformName, String genreName, String formatType);
 	List<Game> findByTitleContainingAndPlatformsPlatformNameAndGenresGenreNameAndFormatsFormatTypeAndRetailersRetailerName(String title, String platformName, String genreName, String formatType, String retailerName);
 
+	/*
+	 * 
+	 */
+	List<Game> findByTitleContainingAndPlatformsPlatformName(String title, String platformName);
+
+	
+	
 }
