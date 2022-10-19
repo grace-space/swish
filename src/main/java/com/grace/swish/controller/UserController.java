@@ -72,20 +72,35 @@ public class UserController {
 	}
 
 	// this one doesn't work at all
+//	@PreAuthorize("isAuthenticated()")
+//	@GetMapping("/index/addToLibrary")
+//	public String updateUserLibraryByGameId(@RequestParam long gameId, Model model) {
+//		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+//		Optional<Game> game = gameService.findGameById(gameId);
+//		Set<Game> gameLibrary = user.getLibrary();
+//		gameLibrary.add(game.get());
+//		userRepository.save(user);
+//		model.addAttribute("gameLibrary", gameLibrary);
+//		model.addAttribute("user", user);
+//
+//		return "redirect:/index";
+//	}
+
+	
+	
+	
+	// trying to get this to work
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/index/addToLibrary")
-	public String updateUserLibraryByGameId(@RequestParam long gameId, Model model) {
+	@GetMapping("/addtoLibrary")
+	public String updateUserLibraryByGameId(@RequestParam long gameId) {
 		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 		Optional<Game> game = gameService.findGameById(gameId);
 		Set<Game> gameLibrary = user.getLibrary();
 		gameLibrary.add(game.get());
 		userRepository.save(user);
-		model.addAttribute("gameLibrary", gameLibrary);
-		model.addAttribute("user", user);
-
 		return "redirect:/index";
 	}
-
+	
 	// this works-ish but for some reason library & wishlist cannot have repeats 
 	@PreAuthorize("isAuthenticated()")
 	@ResponseBody
@@ -94,7 +109,9 @@ public class UserController {
 		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 		Optional<Game> game = gameService.findGameById(gameId);
 		Set<Game> gameLibrary = user.getLibrary();
-		System.out.println("a");
+		System.out.println(user.getLibrary());
+		System.out.println("^ library above, wishlist below v");
+		System.out.println(user);
 		if (gameLibrary.contains(game.get())) {
 			System.out.print("test3");
 			return user;
