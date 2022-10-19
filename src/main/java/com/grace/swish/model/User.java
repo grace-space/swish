@@ -63,6 +63,7 @@ public class User implements Serializable, UserDetails {
 		authorities.add(new SimpleGrantedAuthority("USER"));
 	}
 	
+	
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
@@ -73,21 +74,21 @@ public class User implements Serializable, UserDetails {
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@JsonIgnore
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 	@JsonIgnore
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@JsonIgnore

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,8 +30,8 @@ public class GameController {
 	private GameService gameService;
 
 	private List<Game> games;
-	
 
+	
 	@ResponseBody
 	@GetMapping("/api/library")
 	public List<Game> findAllLibraryGamesByUserId(@RequestParam long userId) {
@@ -44,6 +46,8 @@ public class GameController {
 		return games;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+//	@PreAuthorize("authentication.principal.id == #id")
 	@GetMapping("/user/library/{userId}")
 	public String findLibraryGamesByUserId(@PathVariable long userId, Model model) {
 		games = gameService.findLibraryGamesbyUserId(userId);
@@ -51,6 +55,7 @@ public class GameController {
 		return "library";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/user/wishlist/{userId}")
 	public String findWishlistGamesByUserId(@PathVariable long userId, Model model) {
 		games = gameService.findWishlistGamesbyUserId(userId);

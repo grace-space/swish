@@ -17,21 +17,22 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
 			throw new UsernameNotFoundException("Invalid email or password");
 		} else {
-			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new HashSet<GrantedAuthority>());
+			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+					new HashSet<GrantedAuthority>());
 		}
-		
-		
+
 	}
+	
 
 
 }
