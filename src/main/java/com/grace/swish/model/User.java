@@ -42,6 +42,22 @@ public class User implements Serializable, UserDetails {
 	@Column(nullable = false)
 	private String password;
 
+	@ManyToMany
+	@JoinTable(
+			name = "user_library",
+			joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "userId") },
+			inverseJoinColumns = { @JoinColumn(name = "game_id", referencedColumnName = "gameId") }
+			)
+	private Set<Game> library;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "user_wishlist",
+			joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "userId") },
+			inverseJoinColumns = { @JoinColumn(name = "game_id", referencedColumnName = "gameId") }
+			)
+	private Set<Game> wishlist;
+	
 	
 	public User() {
 		authorities.add(new SimpleGrantedAuthority("USER"));

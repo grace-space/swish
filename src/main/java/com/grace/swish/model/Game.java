@@ -33,8 +33,6 @@ public class Game implements Serializable {
 	@Column(columnDefinition = "text")
 	private String description;
 
-
-	
 	@ManyToMany
 	@JoinTable(
 			name = "game_genres",
