@@ -41,7 +41,7 @@ public class User implements Serializable, UserDetails {
 	@JsonIgnore
 	@Column(nullable = false)
 	private String password;
-
+	
 	@ManyToMany
 	@JoinTable(
 			name = "user_library",

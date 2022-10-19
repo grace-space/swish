@@ -32,6 +32,14 @@ public class Game implements Serializable {
 	
 	@Column(columnDefinition = "text")
 	private String description;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "library")
+	private Set<User> libraryUsers;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "wishlist")
+	private Set<User> wishlistUsers;
 
 	@ManyToMany
 	@JoinTable(

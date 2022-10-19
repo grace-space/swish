@@ -30,12 +30,40 @@ public class GameController {
 	private List<Game> games;
 	
 
+	@ResponseBody
+	@GetMapping("/api/library")
+	public List<Game> findAllLibraryGamesByUserId(@RequestParam long userId) {
+		games = gameService.findLibraryGamesbyUserId(userId);
+		return games;
+	}
+	
+	@ResponseBody
+	@GetMapping("/api/wishlist")
+	public List<Game> findAllWishlistGamesByUserId(@RequestParam long userId) {
+		games = gameService.findWishlistGamesbyUserId(userId);
+		return games;
+	}
+	
+	@GetMapping("/user/library/{userId}")
+	public String findLibraryGamesByUserId(@PathVariable long userId, Model model) {
+		games = gameService.findLibraryGamesbyUserId(userId);
+		model.addAttribute("libraryGames", games);
+		return "library";
+	}
+	
+	@GetMapping("/user/wishlist/{userId}")
+	public String findWishlistGamesByUserId(@PathVariable long userId, Model model) {
+		games = gameService.findWishlistGamesbyUserId(userId);
+		model.addAttribute("wishlistGames", games);
+		return "wishlist";
+	}
+
 	/*
 	 * finds all games if no criteria, otherwise finds games based on params
 	 */
 	@ResponseBody
 	@GetMapping("/api/games")
-	public List<Game> findGames(@RequestParam(required = false) String title,
+	public List<Game> findAllGames(@RequestParam(required = false) String title,
 			@RequestParam(required = false) String platform, 
 			@RequestParam(required = false) String format) {
 		
@@ -67,7 +95,7 @@ public class GameController {
 	}
 	
 	@GetMapping("/index")
-	public String findsAllGames(@RequestParam(required = false) String title,
+	public String findGames(@RequestParam(required = false) String title,
 			@RequestParam(required = false) String platform, 
 			@RequestParam(required = false) String format,
 			Model model) {

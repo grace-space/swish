@@ -34,6 +34,21 @@ public class GameService {
 
 	}
 
+	/*
+	 * looks up userId and returns all games in the user's library
+	 */
+	public List<Game> findLibraryGamesbyUserId(long userId) {
+		games = gameRepository.findAllByLibraryUsersUserId(userId);
+		return games;
+	}
+	
+	/*
+	 * looks up userId and returns all games in the user's wishlist
+	 */
+	public List<Game> findWishlistGamesbyUserId(long userId) {
+		games = gameRepository.findAllByWishlistUsersUserId(userId);
+		return games;
+	}
 	
 	public List<Game> findGamesByTitle(String title) {
 		
