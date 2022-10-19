@@ -39,12 +39,5 @@ public interface GameRepository extends JpaRepository<Game, Long>, JpaSpecificat
 	List<Game> findGamesByPlatformsPlatformNameAndFormatsFormatType(String platformName, String formatType);
 	List<Game> findByTitleContainingAndPlatformsPlatformNameAndFormatsFormatType(String title, String platformName, String formatType);
 	
-	// not sure if we need below
-	List<Game> findGamesByLibrariesLibraryId(Long libraryId);
-	
-	// testing library user
-//	List<Game> findGamesByLibrariesUsersUserId(Long userId);
-//	List<Game> findGamesbyLibrariesByUserUserId(Long userId);
-	
 	
 }

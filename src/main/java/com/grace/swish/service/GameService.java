@@ -19,12 +19,6 @@ public class GameService {
 	private List<Game> games;
 	
 	
-	// testing library
-	public List<Game> findGamesByLibrary(long libraryId) {
-		games = gameRepository.findGamesByLibrariesLibraryId(libraryId);
-		return games;
-	}
-	
 	public List<Game> findAllGames() {
 
 		games = gameRepository.findAll();

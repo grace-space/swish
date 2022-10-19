@@ -28,16 +28,6 @@ public class GameController {
 	private GameService gameService;
 
 	private List<Game> games;
-
-
-	// testing library
-	@ResponseBody
-	@GetMapping("/api/library")
-	public List<Game> findGamesBylibrary(@RequestParam Long libraryId) {
-		games = gameService.findGamesByLibrary(libraryId);
-		return games;
-		
-	}
 	
 
 	/*
