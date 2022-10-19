@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.grace.swish.model.Game;
 import com.grace.swish.model.Platform;
+import com.grace.swish.model.User;
 import com.grace.swish.repository.GameRepository;
 import com.grace.swish.repository.PlatformRepository;
 
@@ -64,6 +65,7 @@ class DemoCommandLineRunner implements CommandLineRunner {
 
 		gameRepository.save(game1);
 		gameRepository.save(game2);
+	
 
 	}
 
