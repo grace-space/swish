@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -57,7 +56,6 @@ public class Game implements Serializable {
 			joinColumns = { @JoinColumn(name = "game_id", referencedColumnName = "gameId") },
 			inverseJoinColumns = { @JoinColumn(name = "platform_id", referencedColumnName = "platformId") }
 			)
-	@JsonManagedReference
 	private Set<Platform> platforms;
 	
 	@ManyToMany
