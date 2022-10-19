@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Library</title>
+</head>
+<body>
+	<h1>Welcome</h1>
+	<br>
+	<h3>Library</h3>
+	<br />
+	<table border="1">
+		<tr>
+			<th>Game Title</th>
+			<th>MSRP</th>
+			<th>Platform</th>
+		</tr>
+		<tr th:each="game : ${libraryGames}">
+			<td th:text="${game.title}" />
+			<td th:text="${game.msrp}" />
+			<td th:text="${#strings.listJoin(game.platforms.![platformName],', ')}" />
+		</tr>
+	</table>
+
+
+
+
+</body>
+</html>
