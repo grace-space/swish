@@ -24,6 +24,7 @@ public class Platform implements Serializable {
 	private String platformName;
 	
 	// change to be unidirectional
+	
 //	@ManyToMany(mappedBy = "platforms", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 //	@JsonBackReference
 //	@JsonIgnore
