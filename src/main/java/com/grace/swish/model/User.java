@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +21,8 @@ import lombok.*;
 public class User implements Serializable, UserDetails {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@JsonIgnore
     private final Set<GrantedAuthority> authorities = new HashSet<>();
 
 
@@ -27,12 +31,14 @@ public class User implements Serializable, UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long userId;
 	
+	
 	@Column(unique = true, length = 16)
 	private String username;
 	
 	@Column(nullable = false, unique = true)
 	private String email;
 	
+	@JsonIgnore
 	@Column(nullable = false)
 	private String password;
 
@@ -47,28 +53,32 @@ public class User implements Serializable, UserDetails {
 		return authorities;
 	}
 
+	@JsonIgnore
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	@JsonIgnore
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
+	@JsonIgnore
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	@JsonIgnore
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	

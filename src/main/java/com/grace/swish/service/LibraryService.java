@@ -19,9 +19,10 @@ public class LibraryService {
 	
 	public Library findLibraryByUserId(long userId) {
 		
-		library = libraryRepository.findLibraryByUserUserId(userId);
+		library = libraryRepository.findByUserUserId(userId);
 		return library;
 		
 	}
+	
 
 }

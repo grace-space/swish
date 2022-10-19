@@ -33,10 +33,11 @@ public class Game implements Serializable {
 	@Column(columnDefinition = "text")
 	private String description;
 
-	// changing these to be unidirectional 
-//	@ManyToMany(mappedBy = "games")
-//	private Set<Wishlist> wishlists;
+	@JsonIgnore
+	@ManyToMany(mappedBy = "games")
+	private Set<Wishlist> wishlists;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "games")
 	private Set<Library> libraries;
 	

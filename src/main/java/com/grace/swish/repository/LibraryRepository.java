@@ -12,7 +12,7 @@ import com.grace.swish.model.Library;
 @Repository
 public interface LibraryRepository extends JpaRepository<Library, Long>{
 	
-	Library findLibraryByUserUserId(long userId);
+	Library findByUserUserId(Long userId);
 
 	
 	

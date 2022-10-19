@@ -19,12 +19,13 @@ public class LibraryController {
 	
 	private Library library;
 	
-//	@ResponseBody
-//	@GetMapping("/api/library")
-//	public Library findLibraryByUserId(@RequestParam Long userId) {
-//		library = libraryService.findLibraryByUserId(userId);
-//		return library;
-//	}
+	@ResponseBody
+	@GetMapping("/api/libraryuser")
+	public Library findLibraryByUserId(@RequestParam Long userId) {
+		library = libraryService.findLibraryByUserId(userId);
+//		System.out.print(library.getGames());
+		return library;
+	}
 	
 	
 
