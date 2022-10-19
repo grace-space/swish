@@ -86,9 +86,23 @@ public class UserController {
 //		return "redirect:/index";
 //	}
 
-	
-	
-	
+	// testing out to see if i can get user
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping
+	public String currentUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result, Model model) {
+
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+		String email = loggedInUser.getName();
+
+		User user = userRepository.findByEmail(email);
+		Long userId = user.getUserId();
+		model.addAttribute("userId", userId);
+		model.addAttribute("emailAddress", email);
+		model.addAttribute("test", "hello world");
+
+		return "index";
+	}
+
 	// trying to get this to work
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/addtoLibrary")
@@ -96,32 +110,12 @@ public class UserController {
 		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 		Optional<Game> game = gameService.findGameById(gameId);
 		Set<Game> gameLibrary = user.getLibrary();
-		gameLibrary.add(game.get());
-		userRepository.save(user);
-		return "redirect:/index";
-	}
-	
-	// this works-ish but for some reason library & wishlist cannot have repeats 
-	@PreAuthorize("isAuthenticated()")
-	@ResponseBody
-	@GetMapping("/index/addToLibrary1")
-	public User updateUserLibraryByGameId1(@RequestParam long gameId) {
-		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-		Optional<Game> game = gameService.findGameById(gameId);
-		Set<Game> gameLibrary = user.getLibrary();
-		System.out.println(user.getLibrary());
-		System.out.println("^ library above, wishlist below v");
-		System.out.println(user);
-		if (gameLibrary.contains(game.get())) {
-			System.out.print("test3");
-			return user;
-			
-		} else {
-
+		if (!gameLibrary.contains(game.get())) {
 			gameLibrary.add(game.get());
 			userRepository.save(user);
-			return user;
-			
+			return "redirect:/index";
+		} else {
+			return "redirect:/index";
 		}
 
 	}

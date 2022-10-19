@@ -42,6 +42,8 @@ public class User implements Serializable, UserDetails {
 	@Column(nullable = false)
 	private String password;
 	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@ManyToMany
 	@JoinTable(
 			name = "user_library",
@@ -50,6 +52,8 @@ public class User implements Serializable, UserDetails {
 			)
 	private Set<Game> library;
 	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@ManyToMany
 	@JoinTable(
 			name = "user_wishlist",

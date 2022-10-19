@@ -12,7 +12,6 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table
 public class Game implements Serializable {
@@ -34,10 +33,12 @@ public class Game implements Serializable {
 	@Column(columnDefinition = "text")
 	private String description;
 	
+	@ToString.Exclude
 	@JsonIgnore
 	@ManyToMany(mappedBy = "library")
 	private Set<User> libraryUsers;
 	
+	@ToString.Exclude
 	@JsonIgnore
 	@ManyToMany(mappedBy = "wishlist")
 	private Set<User> wishlistUsers;
