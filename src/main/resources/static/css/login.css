@@ -107,4 +107,23 @@
     background-color: var(--action-color);
   }
   
+  .error p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 19px;
+    letter-spacing: 0.1em;
+    color: var(--action-color);
+    margin: -12px 0 0 0;
+    text-align: left;
+  }
+  
+    .error-login p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    color: var(--action-color);
+    margin: -14px 0 0 0;
+    text-align: center;
+  }
 
