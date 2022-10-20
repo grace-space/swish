@@ -43,7 +43,9 @@ public class GameController {
 
 	private List<Game> games;
 
-	
+	/*
+	 * JSON data for a single user's game collection
+	 */
 	@ResponseBody
 	@GetMapping("/api/library")
 	public List<Game> findAllLibraryGamesByUserId(@RequestParam long userId) {
@@ -51,6 +53,9 @@ public class GameController {
 		return games;
 	}
 	
+	/*
+	 * JSON data for a single user's wishlist
+	 */
 	@ResponseBody
 	@GetMapping("/api/wishlist")
 	public List<Game> findAllWishlistGamesByUserId(@RequestParam long userId) {
@@ -63,6 +68,9 @@ public class GameController {
 		return "login";
 	}
 	
+	/*
+	 * finds library by user
+	 */
 	@PreAuthorize("isAuthenticated()")
 //	@PreAuthorize("authentication.principal.id == #id")
 	@GetMapping("/user/library/{userId}")
@@ -73,6 +81,10 @@ public class GameController {
 		return "library";
 	}
 	
+	
+	/*
+	 * finds wishlist by user
+	 */
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/user/wishlist/{userId}")
 	public String findWishlistGamesByUserId(@PathVariable long userId, Model model) {
@@ -81,14 +93,10 @@ public class GameController {
 		return "wishlist";
 	}
 	
-//	@GetMapping("/game/{gameId}")
-//	public String findGame(@PathVariable("gameId") long gameId, Model model) {
-//		Optional<Game> game = gameService.findGameById(gameId);
-//		model.addAttribute("game", game);
-//		System.out.println(game + game.get().getTitle());
-//		return "game";
-//	}
 	
+	/*
+	 * to get individual game information to be displayed on the 'game' page
+	 */
 	@GetMapping("/game/{gameId}")
 	public String findGame(@PathVariable("gameId") long gameId, Model model) {
 		Optional<Game> game = gameService.findGameById(gameId);
@@ -97,6 +105,10 @@ public class GameController {
 		return "game";
 	}
 	
+	/*
+	 * This authenticates a user login to ensure they can get to their profile, and also 
+	 * provides multiple search/filter options for games.
+	 */
 	@GetMapping("/index")
 	public String findGames(@ModelAttribute("user") @RequestParam(required = false, value="title") String title,
 			@RequestParam(required = false) String platform, 

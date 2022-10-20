@@ -20,6 +20,9 @@ public class PlatformController {
 	@Autowired
 	PlatformService platformService;
 
+	/*
+	 * Json data for all platforms
+	 */
 	@ResponseBody
 	@GetMapping("/platforms")
 	public List<Platform> findAllPlatforms() {
@@ -29,6 +32,9 @@ public class PlatformController {
 
 	}
 
+	/*
+	 * Json data for platform by id
+	 */
 	@ResponseBody
 	@GetMapping("/platforms/{id}")
 	public Optional<Platform> findPlatform(@PathVariable("id") long platformId) {
@@ -36,11 +42,5 @@ public class PlatformController {
 		return platform;
 	}
 
-//	@PostMapping("/platforms/")
-//	public Platform addPlatform(@RequestBody Platform platform) {
-//
-//		return platformService.addPlatform(platform);
-//
-//	}
 
 }

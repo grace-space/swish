@@ -35,7 +35,9 @@ public class UserController {
 
 	private GameService gameService;
 
-	// handler method to handle user registration form request
+	/*
+	 * User registration
+	 */
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
 
@@ -43,7 +45,10 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "register";
 	}
-
+	
+	/*
+	 * Successfully registers user if they fill out the form correctly
+	 */
 	@PostMapping("/register/save")
 	public String registration(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result, Model model) {
 		User existingEmail = userService.findUserByEmail(userDto.getEmail());
@@ -71,38 +76,6 @@ public class UserController {
 		return "login";
 	}
 
-	// this one doesn't work at all
-//	@PreAuthorize("isAuthenticated()")
-//	@GetMapping("/index/addToLibrary")
-//	public String updateUserLibraryByGameId(@RequestParam long gameId, Model model) {
-//		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-//		Optional<Game> game = gameService.findGameById(gameId);
-//		Set<Game> gameLibrary = user.getLibrary();
-//		gameLibrary.add(game.get());
-//		userRepository.save(user);
-//		model.addAttribute("gameLibrary", gameLibrary);
-//		model.addAttribute("user", user);
-//
-//		return "redirect:/index";
-//	}
-
-	// testing out to see if i can get user
-//	@PreAuthorize("isAuthenticated()")
-//	@GetMapping
-//	public String currentUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result, Model model) {
-//
-//		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-//		String email = loggedInUser.getName();
-//
-//		User user = userRepository.findByEmail(email);
-//		Long userId = user.getUserId();
-//		model.addAttribute("userId", userId);
-//		model.addAttribute("emailAddress", email);
-//		model.addAttribute("test", "hello world");
-//
-//		return "index";
-//	}
-
 
 	/*
 	 * gets current user's id and adds game to their library
@@ -121,21 +94,25 @@ public class UserController {
 			return "redirect:/index?failLibrary";
 		}
 	}
-		
-		@PreAuthorize("isAuthenticated()")
-		@GetMapping("/removeFromLibrary")
-		public String deleteGameFromUserLibraryByGameId(@RequestParam long gameId) {
-			User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-			Optional<Game> game = gameService.findGameById(gameId);
-			Set<Game> gameLibrary = user.getLibrary();
-			if (gameLibrary.contains(game.get())) {
-				gameLibrary.remove(game.get());
-				userRepository.save(user);
-				return "redirect:/user/library/" + user.getUserId() + "?success";
-			} else {
-				return "redirect:/user/library/" + user.getUserId() + "?fail";
-				
-			}
+	
+	
+	/*
+	 * gets current user's id and removes games from their library
+	 */
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/removeFromLibrary")
+	public String deleteGameFromUserLibraryByGameId(@RequestParam long gameId) {
+		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+		Optional<Game> game = gameService.findGameById(gameId);
+		Set<Game> gameLibrary = user.getLibrary();
+		if (gameLibrary.contains(game.get())) {
+			gameLibrary.remove(game.get());
+			userRepository.save(user);
+			return "redirect:/user/library/" + user.getUserId() + "?success";
+		} else {
+			return "redirect:/user/library/" + user.getUserId() + "?fail";
+			
+		}
 
 	}
 
