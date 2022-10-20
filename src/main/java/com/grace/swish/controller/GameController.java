@@ -145,13 +145,14 @@ public class GameController {
 		
 		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
 		String email = loggedInUser.getName();
+			User user = userRepository.findByEmail(email);
+		if (user != null) {
+			Long userId = user.getUserId();
+			String username = user.getUsername();
+			model.addAttribute("userId", userId);
+			model.addAttribute("username", username);	
+		}
 
-		User user = userRepository.findByEmail(email);
-		Long userId = user.getUserId();
-		String username = user.getUsername();
-		model.addAttribute("userId", userId);
-		model.addAttribute("username", username);
-		
 		return "index";
 		
 		

@@ -105,6 +105,10 @@ nav {
   height: 60px;
   background-color: var(--main-color);
   border-radius: 130px;
+
+}
+
+#user-button a {
   font-family: "Jost";
   font-style: normal;
   font-weight: 800;
@@ -113,10 +117,12 @@ nav {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffffff;
+
 }
 
 #user-button:hover {
     background-color: var(--action-color);
+    cursor: pointer;
 }
 
 main {
