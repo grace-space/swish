@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,9 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grace.swish.dto.UserDto;
 import com.grace.swish.model.Game;
+import com.grace.swish.model.User;
+import com.grace.swish.repository.UserRepository;
 import com.grace.swish.service.GameService;
 import com.grace.swish.util.ImageUtil;
+
+import jakarta.validation.Valid;
 
 @Controller
 //@RequestMapping("/api")
@@ -29,6 +36,9 @@ public class GameController {
 
 	@Autowired
 	private GameService gameService;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	private List<Game> games;
 
@@ -101,9 +111,9 @@ public class GameController {
 	}
 	
 	@GetMapping("/index")
-	public String findGames(@RequestParam(required = false) String title,
+	public String findGames(@ModelAttribute("user") @RequestParam(required = false, value="title") String title,
 			@RequestParam(required = false) String platform, 
-			@RequestParam(required = false) String format,
+			@RequestParam(required = false) String format, @Valid UserDto userDto, BindingResult result,
 			Model model) {
 		
 		if (title == null && platform == null && format == null) {
@@ -132,6 +142,15 @@ public class GameController {
 			model.addAttribute("gameList", games);
 		}
 		model.addAttribute("imgUtil", new ImageUtil());
+		
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+		String email = loggedInUser.getName();
+
+		User user = userRepository.findByEmail(email);
+		Long userId = user.getUserId();
+		String username = user.getUsername();
+		model.addAttribute("userId", userId);
+		model.addAttribute("username", username);
 		
 		return "index";
 		

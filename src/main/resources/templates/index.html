@@ -60,7 +60,6 @@
             <a id="main_jump"></a>
             
                 <h1>All Games</h1>
-
                 
                 <section id="search-menu">
                     
@@ -79,7 +78,7 @@
                             </svg>
                         <!-- </div> -->
                             
-                       <form action = ""><input id="title-search" type="text" placeholder="Search Title"></form>
+                       <form th:action="@{/index}"><input id="title-search" type="text" placeholder="Search Title" th:name="title"></form>
                     </div>
 
                 </section>
