@@ -60,9 +60,15 @@ public class GameController {
 	@PreAuthorize("isAuthenticated()")
 //	@PreAuthorize("authentication.principal.id == #id")
 	@GetMapping("/user/library/{userId}")
-	public String findLibraryGamesByUserId(@PathVariable long userId, Model model) {
+	public String findLibraryGamesByUserId(@PathVariable Long userId, Model model) {
+//		if (userId == null) {
+//			System.out.println(userId);
+//			return "redirect:/index";
+//			
+//		}
 		games = gameService.findLibraryGamesbyUserId(userId);
 		model.addAttribute("libraryGames", games);
+		System.out.println(userId);
 		return "library";
 	}
 	
@@ -72,42 +78,6 @@ public class GameController {
 		games = gameService.findWishlistGamesbyUserId(userId);
 		model.addAttribute("wishlistGames", games);
 		return "wishlist";
-	}
-
-	/*
-	 * finds all games if no criteria, otherwise finds games based on params
-	 */
-	@ResponseBody
-	@GetMapping("/api/games")
-	public List<Game> findAllGames(@RequestParam(required = false) String title,
-			@RequestParam(required = false) String platform, 
-			@RequestParam(required = false) String format) {
-		
-		if (title == null && platform == null && format == null) {
-			games = gameService.findAllGames();
-			return games;
-		} else if (platform == null && format == null) {
-			games = gameService.findGamesByTitle(title);
-			return games;
-		} else if (title == null & format == null) {
-			games = gameService.findGamesByPlatform(platform);
-			return games;
-		} else if (title == null && platform == null) {
-			games = gameService.findGamesByFormat(format);
-			return games;
-		} else if (platform == null) {
-			games = gameService.findGamesByTitleAndFormat(title, format);
-			return games;
-		} else if (title == null) {
-			games = gameService.findGamesByPlatformAndFormat(platform, format);
-			return games;
-		} else if (format == null) {
-			games = gameService.findGamesByTitleAndPlatform(title, platform);
-			return games;
-		} else {
-			games = gameService.findGamesByTitlePlatformAndFormat(title, platform, format);
-			return games;
-		}
 	}
 	
 	@GetMapping("/index")
@@ -150,14 +120,50 @@ public class GameController {
 			Long userId = user.getUserId();
 			String username = user.getUsername();
 			model.addAttribute("userId", userId);
-			model.addAttribute("username", username);	
+			model.addAttribute("username", username);
+			return "index";
+		} else {
+			return "login";
 		}
-
-		return "index";
-		
-		
 		
 	}
+
+	/*
+	 * finds all games if no criteria, otherwise finds games based on params
+	 */
+	@ResponseBody
+	@GetMapping("/api/games")
+	public List<Game> findAllGames(@RequestParam(required = false) String title,
+			@RequestParam(required = false) String platform, 
+			@RequestParam(required = false) String format) {
+		
+		if (title == null && platform == null && format == null) {
+			games = gameService.findAllGames();
+			return games;
+		} else if (platform == null && format == null) {
+			games = gameService.findGamesByTitle(title);
+			return games;
+		} else if (title == null & format == null) {
+			games = gameService.findGamesByPlatform(platform);
+			return games;
+		} else if (title == null && platform == null) {
+			games = gameService.findGamesByFormat(format);
+			return games;
+		} else if (platform == null) {
+			games = gameService.findGamesByTitleAndFormat(title, format);
+			return games;
+		} else if (title == null) {
+			games = gameService.findGamesByPlatformAndFormat(platform, format);
+			return games;
+		} else if (format == null) {
+			games = gameService.findGamesByTitleAndPlatform(title, platform);
+			return games;
+		} else {
+			games = gameService.findGamesByTitlePlatformAndFormat(title, platform, format);
+			return games;
+		}
+	}
+	
 
 	@ResponseBody
 	@GetMapping("/game/{id}")
