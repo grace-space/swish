@@ -21,7 +21,7 @@ public class PlatformController {
 	PlatformService platformService;
 
 	/*
-	 * Json data for all platforms
+	 * Json data for all platforms 
 	 */
 	@ResponseBody
 	@GetMapping("/platforms")

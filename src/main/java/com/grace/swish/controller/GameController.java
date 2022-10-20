@@ -63,6 +63,9 @@ public class GameController {
 		return games;
 	}
 	
+	/*
+	 * redirects to login if no user found
+	 */
 	@GetMapping("/user/library/")
 	public String redirectLogin() {
 		return "login";

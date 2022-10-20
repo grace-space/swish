@@ -36,7 +36,7 @@ public class UserController {
 	private GameService gameService;
 
 	/*
-	 * User registration
+	 * User registration 
 	 */
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
