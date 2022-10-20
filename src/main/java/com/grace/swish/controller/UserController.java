@@ -128,12 +128,12 @@ public class UserController {
 			User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 			Optional<Game> game = gameService.findGameById(gameId);
 			Set<Game> gameLibrary = user.getLibrary();
-			if (!gameLibrary.contains(game.get())) {
+			if (gameLibrary.contains(game.get())) {
 				gameLibrary.remove(game.get());
 				userRepository.save(user);
-				return "redirect:/library?successLibrary";
+				return "redirect:/user/library/" + user.getUserId() + "?success";
 			} else {
-				return "redirect:/library?failLibrary";
+				return "redirect:/user/library/" + user.getUserId() + "?fail";
 				
 			}
 

@@ -54,6 +54,9 @@
                 <a href="wishlist.html"><div id="wishlist-link"><p>My Wishlist</p></div></a>
 
             </div>
+            
+              <div th:if="${param.success}"><p>Successfully removed from library</p> </div>
+               <div th:if="${param.fail}"><p>Could not remove from library</p> </div>
 
             
             <section id="games-listing">
@@ -63,7 +66,7 @@
 
                     
                     <div class="remove-library-button">
-                       <a href="removelibrary">remove from library</a>
+                      <a th:href="@{/removeFromLibrary(gameId=${game.gameId})}">remove from library</a>
                     </div>
                 
                 </div>
