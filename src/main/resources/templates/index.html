@@ -85,6 +85,8 @@
                 
                       <div th:if="${param.successLibrary}"><p>Added to your library</p> </div>
                        <div th:if="${param.failLibrary}"><p>Game is already in library</p> </div>
+                       <div th:if="${param.successWishlist}"><p>Added to your wishlist</p> </div>
+                       <div th:if="${param.failWishlist}"><p>Game is already in wishlist</p> </div>
 
                 <section id="games-listing" >
                     <div class="game-list" th:each="game : ${gameList}">
@@ -96,7 +98,7 @@
                             <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00059 0.243164C6.1332 0.243164 6.26037 0.295848 6.35414 0.389625C6.44791 0.483402 6.50059 0.610592 6.50059 0.743213V5.74194H11.4988C11.6317 5.74194 11.7592 5.79474 11.8532 5.88874C11.9472 5.98274 12 6.11023 12 6.24316C12 6.3761 11.9472 6.50359 11.8532 6.59759C11.7592 6.69158 11.6317 6.74439 11.4988 6.74439H6.50059V11.7419C6.50059 11.8749 6.44779 12.0024 6.3538 12.0964C6.25981 12.1904 6.13233 12.2432 5.99941 12.2432C5.86649 12.2432 5.73901 12.1904 5.64502 12.0964C5.55103 12.0024 5.49823 11.8749 5.49823 11.7419V6.74144H0.501179C0.368258 6.74144 0.240781 6.68864 0.146792 6.59464C0.0528026 6.50064 0 6.37315 0 6.24022C0 6.10728 0.0528026 5.97979 0.146792 5.88579C0.240781 5.79179 0.368258 5.73899 0.501179 5.73899H5.50059V0.743213C5.50059 0.610592 5.55327 0.483402 5.64704 0.389625C5.7408 0.295848 5.86798 0.243164 6.00059 0.243164Z" fill="white"/>
                                 </svg>
-                                <a href="">add to wishlist</a>
+                               <a th:href="@{/addtoWishlist(gameId=${game.gameId})}">add to wishlist</a>
                         </div>
                     
 

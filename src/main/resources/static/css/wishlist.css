@@ -58,7 +58,7 @@
   
 }
 
-#library-link {
+#wishlist-link {
   display: flex;
   justify-content: center;
   align-content: center;
@@ -70,7 +70,7 @@
   box-sizing: border-box;
 }
 
-#library-link p {
+#wishlist-link p {
   display: flex;
   align-items: center;
   text-align: center;
@@ -84,7 +84,7 @@
 
 }
 
-#wishlist-link {
+#library-link {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -108,7 +108,7 @@
 
 }
 
-#wishlist-link p {
+#library-link p {
   display: flex;
   align-items: center;
   text-align: center;

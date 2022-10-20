@@ -115,5 +115,44 @@ public class UserController {
 		}
 
 	}
+	
+	/*
+	 * gets current user's id and adds game to their library
+	 */
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/addtoWishlist")
+	public String updateUserWishlistByGameId(@RequestParam long gameId) {
+		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+		Optional<Game> game = gameService.findGameById(gameId);
+		Set<Game> gameWishlist = user.getWishlist();
+		if (!gameWishlist.contains(game.get())) {
+			gameWishlist.add(game.get());
+			userRepository.save(user);
+			return "redirect:/index?successWishlist";
+		} else {
+			return "redirect:/index?failWishlist";
+		}
+	}
+	
+	
+	/*
+	 * gets current user's id and removes games from their library
+	 */
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/removeFromWishlist")
+	public String deleteGameFromUserWishlistByGameId(@RequestParam long gameId) {
+		User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+		Optional<Game> game = gameService.findGameById(gameId);
+		Set<Game> gameWishlist = user.getWishlist();
+		if (gameWishlist.contains(game.get())) {
+			gameWishlist.remove(game.get());
+			userRepository.save(user);
+			return "redirect:/user/wishlist/" + user.getUserId() + "?success";
+		} else {
+			return "redirect:/user/wishlist/" + user.getUserId() + "?fail";
+			
+		}
+
+	}
 
 }

@@ -1,3 +1,5 @@
+--Please remove this file after initial demo as it will cause confclits if ran again
+
 INSERT INTO game (game_id, description, img_url, msrp, rating, title) VALUES(1, 'Get ready for a new kind of grand, Pokémon adventure in Pokémon™ Legends: Arceus, a new game from Game Freak that blends action and exploration with the RPG roots of the Pokémon series.', 'https://www.nintendo.com/my/switch/aw7k/img/hero_sp.jpg', 59.99, 8.0, 'Pokemon Legends');
 INSERT INTO game (game_id, description, img_url, msrp, rating, title) VALUES(2, 'Start your engines and gear up for the ultimate racing experience in Cars 3: Driven to Win inspired by Disney Pixar''s film, Cars 3. Play with over 20 customizable characters including Lightning McQueen, Jackson Storm, Cruz Ramirez and the next generation of racers in over 20 tracks set in iconic locations from the film such as Radiator Springs. 
 

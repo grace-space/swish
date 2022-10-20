@@ -51,7 +51,7 @@
             <div id="profile-link">
 
                 <div id="library-link"><p>My Library</p></div>
-                <a href="wishlist.html"><div id="wishlist-link"><p>My Wishlist</p></div></a>
+                <a th:href="@{/user/wishlist/{userId}(userId=${userId})}"><div id="wishlist-link"><p>My Wishlist</p></div></a>
 
             </div>
             
