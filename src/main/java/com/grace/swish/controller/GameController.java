@@ -57,6 +57,11 @@ public class GameController {
 		return games;
 	}
 	
+	@GetMapping("/user/library/")
+	public String redirectLogin() {
+		return "login";
+	}
+	
 	@PreAuthorize("isAuthenticated()")
 //	@PreAuthorize("authentication.principal.id == #id")
 	@GetMapping("/user/library/{userId}")
