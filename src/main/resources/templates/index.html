@@ -82,11 +82,14 @@
                     </div>
 
                 </section>
+                
+                      <div th:if="${param.successLibrary}"><p>Added to your library</p> </div>
+                       <div th:if="${param.failLibrary}"><p>Game is already in library</p> </div>
 
                 <section id="games-listing" >
                     <div class="game-list" th:each="game : ${gameList}">
                             <img class="game-image" th:src="${game.imgUrl}" />
-                        <h3 th:text="${game.title}">This is a game title</h3>
+                        <h3 th:text="${game.title}"></h3>
 
                         
                         <div class="add-wishlist-button">

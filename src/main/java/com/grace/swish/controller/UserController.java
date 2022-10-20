@@ -104,6 +104,9 @@ public class UserController {
 //	}
 
 
+	/*
+	 * gets current user's id and adds game to their library
+	 */
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/addtoLibrary")
 	public String updateUserLibraryByGameId(@RequestParam long gameId) {
@@ -113,10 +116,26 @@ public class UserController {
 		if (!gameLibrary.contains(game.get())) {
 			gameLibrary.add(game.get());
 			userRepository.save(user);
-			return "redirect:/index";
+			return "redirect:/index?successLibrary";
 		} else {
-			return "redirect:/index";
+			return "redirect:/index?failLibrary";
 		}
+	}
+		
+		@PreAuthorize("isAuthenticated()")
+		@GetMapping("/removeFromLibrary")
+		public String deleteGameFromUserLibraryByGameId(@RequestParam long gameId) {
+			User user = userService.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+			Optional<Game> game = gameService.findGameById(gameId);
+			Set<Game> gameLibrary = user.getLibrary();
+			if (!gameLibrary.contains(game.get())) {
+				gameLibrary.remove(game.get());
+				userRepository.save(user);
+				return "redirect:/library?successLibrary";
+			} else {
+				return "redirect:/library?failLibrary";
+				
+			}
 
 	}
 
