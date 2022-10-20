@@ -33,6 +33,11 @@ public class GameService {
 		return game;
 
 	}
+	
+	public void deleteGame(long gameId) {
+		gameRepository.deleteById(gameId);
+	}
+	
 
 	/*
 	 * looks up userId and returns all games in the user's library
@@ -113,27 +118,6 @@ public class GameService {
 //		gameRepository.save(game);
 //	}
 
-	// not sure if i need this method right now
-//	public void updateGame(long gameId, Game game) {
-//		Optional<Game> gameData = gameRepository.findById(gameId);
-//		
-//		if (gameData.isPresent()) {
-//			Game game2 = gameData.get();
-//			game2.setTitle(game.getTitle());
-//			game2.setRating(game.getRating());
-//			game2.setMsrp(game.getMsrp());
-//			game2.setImgUrl(game.getImgUrl());
-//			game2.setGenres(game.getGenres());
-//			game2.setPlatforms(game.getPlatforms());
-//			game2.setFormats(game.getFormats());
-//			game2.setRetailers(game.getRetailers());
-//			gameRepository.save(game2);
-//		}
-//	}
-
-//	public void deleteGame(long gameId) {
-//		gameRepository.deleteById(gameId);
-//	}
 
 //	public void deleteAllGames() {
 //		gameRepository.deleteAll();

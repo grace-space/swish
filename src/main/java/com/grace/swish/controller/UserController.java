@@ -87,23 +87,23 @@ public class UserController {
 //	}
 
 	// testing out to see if i can get user
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping
-	public String currentUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result, Model model) {
+//	@PreAuthorize("isAuthenticated()")
+//	@GetMapping
+//	public String currentUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result, Model model) {
+//
+//		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+//		String email = loggedInUser.getName();
+//
+//		User user = userRepository.findByEmail(email);
+//		Long userId = user.getUserId();
+//		model.addAttribute("userId", userId);
+//		model.addAttribute("emailAddress", email);
+//		model.addAttribute("test", "hello world");
+//
+//		return "index";
+//	}
 
-		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-		String email = loggedInUser.getName();
 
-		User user = userRepository.findByEmail(email);
-		Long userId = user.getUserId();
-		model.addAttribute("userId", userId);
-		model.addAttribute("emailAddress", email);
-		model.addAttribute("test", "hello world");
-
-		return "index";
-	}
-
-	// trying to get this to work
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/addtoLibrary")
 	public String updateUserLibraryByGameId(@RequestParam long gameId) {

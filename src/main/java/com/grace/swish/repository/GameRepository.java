@@ -42,4 +42,6 @@ public interface GameRepository extends JpaRepository<Game, Long>, JpaSpecificat
 	List<Game> findAllByLibraryUsersUserId(Long userId);
 	List<Game> findAllByWishlistUsersUserId(Long userId);
 	
+	void deleteById(Long gameId);
+	
 }

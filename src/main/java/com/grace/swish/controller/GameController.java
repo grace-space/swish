@@ -66,11 +66,6 @@ public class GameController {
 //	@PreAuthorize("authentication.principal.id == #id")
 	@GetMapping("/user/library/{userId}")
 	public String findLibraryGamesByUserId(@PathVariable Long userId, Model model) {
-//		if (userId == null) {
-//			System.out.println(userId);
-//			return "redirect:/index";
-//			
-//		}
 		games = gameService.findLibraryGamesbyUserId(userId);
 		model.addAttribute("libraryGames", games);
 		System.out.println(userId);
@@ -84,6 +79,9 @@ public class GameController {
 		model.addAttribute("wishlistGames", games);
 		return "wishlist";
 	}
+	
+	
+	
 	
 	@GetMapping("/index")
 	public String findGames(@ModelAttribute("user") @RequestParam(required = false, value="title") String title,
@@ -126,10 +124,8 @@ public class GameController {
 			String username = user.getUsername();
 			model.addAttribute("userId", userId);
 			model.addAttribute("username", username);
-			return "index";
-		} else {
-			return "login";
 		}
+		return "index";
 		
 	}
 

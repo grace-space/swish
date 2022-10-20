@@ -10,14 +10,14 @@ public class UserDto {
 	
 	private long userId;
 	
-	@NotEmpty
+	@NotEmpty(message = "Username cannot be blank")
 	private String username;
 	
-	@NotEmpty(message = "Email should not be empty")
+	@NotEmpty(message = "E-mail cannot be blank")
 	@Email
 	private String email;
 	
-	@NotEmpty(message = "Password should not be empty")
+	@NotEmpty(message = "Password cannot be blank")
 	private String password;
 	
 	
