@@ -8,6 +8,18 @@ This is a web app that let's you maintain a record of your gaming collection and
 ## Technologies Used
 This was built in Java with Spring Boot framework and utilized Thymeleaf to create dynamic webpages with HTML, CSS, and JavaScript.
 
-# Project Features
+* Java
+* Spring Boot Framework
+* Hibernate
+* SQL
+* Thymeleaf
+* HTML, CSS, Javascript
+* etc. 
+
+## Project Features
 User is able to view the list of games, but must be registered to add to library or wishlist. After registration / logging in, they may also view their profile to see their personal library and wishlist. 
 
+The database will create & populate sample data on startup for MariaDB with default user and pass (root). 
+
+The website is accessed from:
+http://localhost:8080/index
