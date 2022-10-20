@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grace.swish.model.Game;
 import com.grace.swish.service.GameService;
+import com.grace.swish.util.ImageUtil;
 
 @Controller
 //@RequestMapping("/api")
@@ -130,6 +131,7 @@ public class GameController {
 			games = gameService.findGamesByTitlePlatformAndFormat(title, platform, format);
 			model.addAttribute("gameList", games);
 		}
+		model.addAttribute("imgUtil", new ImageUtil());
 		
 		return "index";
 		
