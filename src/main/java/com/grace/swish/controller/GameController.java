@@ -29,9 +29,10 @@ import com.grace.swish.service.GameService;
 import com.grace.swish.util.ImageUtil;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
-//@RequestMapping("/api")
 public class GameController {
 
 	@Autowired
