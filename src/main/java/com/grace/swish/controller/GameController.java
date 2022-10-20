@@ -80,6 +80,22 @@ public class GameController {
 		return "wishlist";
 	}
 	
+//	@GetMapping("/game/{gameId}")
+//	public String findGame(@PathVariable("gameId") long gameId, Model model) {
+//		Optional<Game> game = gameService.findGameById(gameId);
+//		model.addAttribute("game", game);
+//		System.out.println(game + game.get().getTitle());
+//		return "game";
+//	}
+	
+	@GetMapping("/game/{gameId}")
+	public String findGame(@PathVariable("gameId") long gameId, Model model) {
+		Optional<Game> game = gameService.findGameById(gameId);
+		model.addAttribute("game", game);
+		System.out.println(game + game.get().getTitle());
+		return "game";
+	}
+	
 	@GetMapping("/index")
 	public String findGames(@ModelAttribute("user") @RequestParam(required = false, value="title") String title,
 			@RequestParam(required = false) String platform, 
@@ -162,13 +178,6 @@ public class GameController {
 		}
 	}
 	
-
-	@ResponseBody
-	@GetMapping("/game/{id}")
-	public String findGame(@PathVariable("id") long gameId) {
-		Optional<Game> game = gameService.findGameById(gameId);
-		return "game";
-	}
 
 	@ResponseBody
 	@GetMapping("/platforms/{platformId}/games")

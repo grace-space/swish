@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWISH | Main</title>
+    <title>SWISH | Details</title>
     <link rel="stylesheet" th:href="@{/css/style.css}" />
-    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/game.css}" />
 </head>
 <body>
     <div class="site-section" id="site-section">
@@ -39,79 +39,82 @@
                 </div>
             </nav>
 
-            <div id="hero-header">
-            <div id="hero-text">
-                <h1>Track your games with ease</h1>
-                <a href="#main_jump">
-                <div id="viewgames-button">
-                    View Games
-                </div>
-            </a>
-                
-                
+            <div id="text-header">
+                <h1 th:text="${title}">Title</h1>
             </div>
-            <img th:src="@{/images/SwitchImage.png}">
-            </div>
-
 
         </header>
         
         <main>
-            <a id="main_jump"></a>
-            
-                <h1>All Games</h1>
-                
-                <section id="search-menu">
-                    
-                    <div id="filters-container">
-                        Genre
-                        Platform
-                        Format
 
-                    </div>
+            <section id="game-section">
+            <div id="game-container">
+                <img class="game-image" src="" />
 
-                    <div id="search-bar">
-                        <!-- <div id="magnifying-glass"> -->
-
-                        <svg width="15.63" height=auto display="block" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.3833 13.1199C7.76953 13.1199 9.04785 12.6716 10.0938 11.9246L14.0283 15.8591C14.2109 16.0417 14.4517 16.1331 14.709 16.1331C15.2485 16.1331 15.6304 15.718 15.6304 15.1868C15.6304 14.9377 15.5474 14.697 15.3647 14.5227L11.4551 10.6047C12.2769 9.52563 12.7666 8.18921 12.7666 6.73657C12.7666 3.22534 9.89453 0.353271 6.3833 0.353271C2.88037 0.353271 0 3.21704 0 6.73657C0 10.2478 2.87207 13.1199 6.3833 13.1199ZM6.3833 11.7419C3.64404 11.7419 1.37793 9.47583 1.37793 6.73657C1.37793 3.99731 3.64404 1.7312 6.3833 1.7312C9.12256 1.7312 11.3887 3.99731 11.3887 6.73657C11.3887 9.47583 9.12256 11.7419 6.3833 11.7419Z" fill="#3C3C43" fill-opacity="0.6"/>
-                            </svg>
-                        <!-- </div> -->
-                            
-                       <form th:action="@{/index}"><input id="title-search" type="text" placeholder="Search Title" th:name="title"></form>
-                    </div>
-
-                </section>
-                
-                      <div th:if="${param.successLibrary}"><p>Added to your library</p> </div>
-                       <div th:if="${param.failLibrary}"><p>Game is already in library</p> </div>
-
-                <section id="games-listing" >
-                    <div class="game-list" th:each="game : ${gameList}">
-                            <a th:href="@{/game/{gameId}(gameId=${game.gameId})}"><img class="game-image" th:src="${game.imgUrl}" /></a>
-                        <h3 th:text="${game.title}"></h3>
-
+                <div class="game-info">
                         
-                        <div class="add-wishlist-button">
-                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00059 0.243164C6.1332 0.243164 6.26037 0.295848 6.35414 0.389625C6.44791 0.483402 6.50059 0.610592 6.50059 0.743213V5.74194H11.4988C11.6317 5.74194 11.7592 5.79474 11.8532 5.88874C11.9472 5.98274 12 6.11023 12 6.24316C12 6.3761 11.9472 6.50359 11.8532 6.59759C11.7592 6.69158 11.6317 6.74439 11.4988 6.74439H6.50059V11.7419C6.50059 11.8749 6.44779 12.0024 6.3538 12.0964C6.25981 12.1904 6.13233 12.2432 5.99941 12.2432C5.86649 12.2432 5.73901 12.1904 5.64502 12.0964C5.55103 12.0024 5.49823 11.8749 5.49823 11.7419V6.74144H0.501179C0.368258 6.74144 0.240781 6.68864 0.146792 6.59464C0.0528026 6.50064 0 6.37315 0 6.24022C0 6.10728 0.0528026 5.97979 0.146792 5.88579C0.240781 5.79179 0.368258 5.73899 0.501179 5.73899H5.50059V0.743213C5.50059 0.610592 5.55327 0.483402 5.64704 0.389625C5.7408 0.295848 5.86798 0.243164 6.00059 0.243164Z" fill="white"/>
-                                </svg>
-                                <a href="">add to wishlist</a>
-                        </div>
-                    
+                    <h3>This is a game title</h3>
 
-                        <a href="addtolibrary">
-                        <div class="add-library-button">
-                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00059 0.243164C6.1332 0.243164 6.26037 0.295848 6.35414 0.389625C6.44791 0.483402 6.50059 0.610592 6.50059 0.743213V5.74194H11.4988C11.6317 5.74194 11.7592 5.79474 11.8532 5.88874C11.9472 5.98274 12 6.11023 12 6.24316C12 6.3761 11.9472 6.50359 11.8532 6.59759C11.7592 6.69158 11.6317 6.74439 11.4988 6.74439H6.50059V11.7419C6.50059 11.8749 6.44779 12.0024 6.3538 12.0964C6.25981 12.1904 6.13233 12.2432 5.99941 12.2432C5.86649 12.2432 5.73901 12.1904 5.64502 12.0964C5.55103 12.0024 5.49823 11.8749 5.49823 11.7419V6.74144H0.501179C0.368258 6.74144 0.240781 6.68864 0.146792 6.59464C0.0528026 6.50064 0 6.37315 0 6.24022C0 6.10728 0.0528026 5.97979 0.146792 5.88579C0.240781 5.79179 0.368258 5.73899 0.501179 5.73899H5.50059V0.743213C5.50059 0.610592 5.55327 0.483402 5.64704 0.389625C5.7408 0.295848 5.86798 0.243164 6.00059 0.243164Z" fill="white"/>
-                                </svg>
-                                <a th:href="@{/addtoLibrary(gameId=${game.gameId})}">add to library</a>
-                        </div>
-                    </a>
+                    <table id="game-table">
+                        <tr>
+                            <td>Format</td>
+                            <td>Physical</td>
+                        </tr>
+                        <tr>
+                            <td>Platform</td>
+                            <td>Nintendo Switch</td>
+                        </tr>
+                        <tr>
+                            <td>Genre</td>
+                            <td>Platformer</td>
+                        </tr>
+                        <tr>
+                            <td>Multiplayer</td>
+                            <td>None</td>
+
+                        </tr>
+                        <tr>
+                            <td>Rating</td>
+                            <td>8.5</td>
+
+                        </tr>
+                        <tr>
+                            <td>Retailer</td>
+                            <td>Limited Run</td>
+                        </tr>
+                        <tr>
+                            <td>MSRP</td>
+                            <td>$59.99</td>
+                        </tr>
+                    </table>
+
+                    <div class="add-wishlist-button">
+                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00059 0.243164C6.1332 0.243164 6.26037 0.295848 6.35414 0.389625C6.44791 0.483402 6.50059 0.610592 6.50059 0.743213V5.74194H11.4988C11.6317 5.74194 11.7592 5.79474 11.8532 5.88874C11.9472 5.98274 12 6.11023 12 6.24316C12 6.3761 11.9472 6.50359 11.8532 6.59759C11.7592 6.69158 11.6317 6.74439 11.4988 6.74439H6.50059V11.7419C6.50059 11.8749 6.44779 12.0024 6.3538 12.0964C6.25981 12.1904 6.13233 12.2432 5.99941 12.2432C5.86649 12.2432 5.73901 12.1904 5.64502 12.0964C5.55103 12.0024 5.49823 11.8749 5.49823 11.7419V6.74144H0.501179C0.368258 6.74144 0.240781 6.68864 0.146792 6.59464C0.0528026 6.50064 0 6.37315 0 6.24022C0 6.10728 0.0528026 5.97979 0.146792 5.88579C0.240781 5.79179 0.368258 5.73899 0.501179 5.73899H5.50059V0.743213C5.50059 0.610592 5.55327 0.483402 5.64704 0.389625C5.7408 0.295848 5.86798 0.243164 6.00059 0.243164Z" fill="white"/>
+                            </svg>
+                            <a href="addtowishlist">add to wishlist</a>
                     </div>
 
-                </section>
-                
+                    
+                    <div class="add-library-button">
+                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00059 0.243164C6.1332 0.243164 6.26037 0.295848 6.35414 0.389625C6.44791 0.483402 6.50059 0.610592 6.50059 0.743213V5.74194H11.4988C11.6317 5.74194 11.7592 5.79474 11.8532 5.88874C11.9472 5.98274 12 6.11023 12 6.24316C12 6.3761 11.9472 6.50359 11.8532 6.59759C11.7592 6.69158 11.6317 6.74439 11.4988 6.74439H6.50059V11.7419C6.50059 11.8749 6.44779 12.0024 6.3538 12.0964C6.25981 12.1904 6.13233 12.2432 5.99941 12.2432C5.86649 12.2432 5.73901 12.1904 5.64502 12.0964C5.55103 12.0024 5.49823 11.8749 5.49823 11.7419V6.74144H0.501179C0.368258 6.74144 0.240781 6.68864 0.146792 6.59464C0.0528026 6.50064 0 6.37315 0 6.24022C0 6.10728 0.0528026 5.97979 0.146792 5.88579C0.240781 5.79179 0.368258 5.73899 0.501179 5.73899H5.50059V0.743213C5.50059 0.610592 5.55327 0.483402 5.64704 0.389625C5.7408 0.295848 5.86798 0.243164 6.00059 0.243164Z" fill="white"/>
+                            </svg>
+                            <a href="addtolibrary">add to library</a>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="game-desc">
+               <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum, tenetur repellendus ducimus dolores veniam delectus voluptates atque sint modi possimus sunt dignissimos autem maiores voluptate iste dolorem. Iste eius deleniti esse enim et eos, quibusdam modi labore sint facilis in doloribus aut tempore, amet nihil at sunt molestias laudantium ab!</p>
+            </div>
+
+        </section>
+
 
         </main>
 
@@ -119,8 +122,8 @@
             <p>©2022 Swish | <a href="">Privacy Policy</a></p>
 
         </footer>
-        
-    
+
+
 </body>
 
 </html>
