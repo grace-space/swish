@@ -88,7 +88,7 @@
 
                 <section id="games-listing" >
                     <div class="game-list" th:each="game : ${gameList}">
-                            <img class="game-image" th:src="${game.imgUrl}" />
+                            <a th:href="@{/user/library/1}"><img class="game-image" th:src="${game.imgUrl}" /></a>
                         <h3 th:text="${game.title}"></h3>
 
                         

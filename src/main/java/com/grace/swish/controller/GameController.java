@@ -80,9 +80,6 @@ public class GameController {
 		return "wishlist";
 	}
 	
-	
-	
-	
 	@GetMapping("/index")
 	public String findGames(@ModelAttribute("user") @RequestParam(required = false, value="title") String title,
 			@RequestParam(required = false) String platform, 
@@ -168,9 +165,9 @@ public class GameController {
 
 	@ResponseBody
 	@GetMapping("/game/{id}")
-	public Optional<Game> findGame(@PathVariable("id") long gameId) {
+	public String findGame(@PathVariable("id") long gameId) {
 		Optional<Game> game = gameService.findGameById(gameId);
-		return game;
+		return "game";
 	}
 
 	@ResponseBody
