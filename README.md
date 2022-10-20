@@ -10,3 +10,4 @@ This was built in Java with Spring Boot framework and utilized Thymeleaf to crea
 
 # Project Features
 User is able to view the list of games, but must be registered to add to library or wishlist. After registration / logging in, they may also view their profile to see their personal library and wishlist. 
+
