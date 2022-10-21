@@ -114,11 +114,7 @@ public class GameController {
 		Optional<Game> game = gameService.findGameById(gameId);
 		if (game.isPresent()) {
 			model.addAttribute(game.get());
-			model.addAttribute("format", game.get().getFormats());
-			model.addAttribute("genre", game.get().getGenres());
-			model.addAttribute("mutliplayer", game.get().getPlayers());
-			model.addAttribute("platform", game.get().getPlatforms());
-			model.addAttribute("retailer", game.get().getRetailers());
+			System.out.print(game.get().getGenres());
 			return "game";
 		}
 		

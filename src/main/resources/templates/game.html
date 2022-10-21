@@ -55,36 +55,36 @@
                         
                     <h3 th:text="${game.title}">This is a game title</h3>
 
-                    <table id="game-table">
+                    <table id="game-table" th:each="game : ${game}">
                         <tr>
-                            <td>Format</td>
-                            <td>Physical</td>
+                            <td>Format:)</td>
+                            <td th:text="${#strings.listJoin(game.formats.![formatType],', ')}">Physical</td>
                         </tr>
                         <tr>
-                            <td>Platform</td>
-                            <td>Nintendo Switch</td>
+                            <td>Platform:</td>
+                            <td th:text="${#strings.listJoin(game.platforms.![PlatformName],', ')}">Nintendo Switch</td>
                         </tr>
                         <tr>
-                            <td>Genre</td>
-                            <td>Platformer</td>
+                            <td>Genre:</td>
+                            <td th:text="${#strings.listJoin(game.genres.![genreName],', ')}">Platformer</td>
                         </tr>
                         <tr>
-                            <td>Multiplayer</td>
-                            <td>Singleplayer</td>
+                            <td>Multiplayer:</td>
+                            <td th:text="${#strings.listJoin(game.players.![multiplayerType],', ')}">Singleplayer</td>
 
                         </tr>
                         <tr>
-                            <td>Rating</td>
-                            <td>8.5</td>
+                            <td>Rating:</td>
+                            <td th:text="${game.rating}">8.5</td>
 
                         </tr>
                         <tr>
-                            <td>Retailer</td>
-                            <td>Limited Run</td>
+                            <td>Retailer:</td>
+                            <td th:text="${#strings.listJoin(game.retailers.![retailerName],', ')}">Limited Run</td>
                         </tr>
                         <tr>
-                            <td>MSRP</td>
-                            <td>$59.99</td>
+                            <td>MSRP:</td>
+                            <td th:text="${#numbers.formatCurrency(game.msrp)}">$59.99</td>
                         </tr>
                     </table>
 
