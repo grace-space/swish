@@ -148,6 +148,8 @@ main h1 {
   gap: 24px;
 }
 
+
+
 .game-list {
   display: flex;
   flex-direction: column;
@@ -165,6 +167,13 @@ main h1 {
   height: 398px;
   object-fit: cover;
 }
+
+.game-image:hover {
+  transform: scale(1.05, 1.05);
+  transition: 200ms linear;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}  
+
 
 .game-list h3 {
   margin: 20px;

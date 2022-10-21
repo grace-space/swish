@@ -176,8 +176,8 @@ main {
   #game-desc {
     width: 824px;
     display: flex;
-    align-items: center;
     margin-top: 15px;
+    text-align: left;
 
   }
   

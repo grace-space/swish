@@ -72,7 +72,7 @@ public class GameController {
 	}
 	
 	/*
-	 * finds library by user
+	 * finds library by user and also creates a custom message to the user
 	 */
 	@PreAuthorize("isAuthenticated()")
 //	@PreAuthorize("authentication.principal.id == #id")
@@ -80,7 +80,11 @@ public class GameController {
 	public String findLibraryGamesByUserId(@PathVariable Long userId, Model model) {
 		games = gameService.findLibraryGamesbyUserId(userId);
 		model.addAttribute("libraryGames", games);
-		System.out.println(userId);
+		
+		Optional<User> user = userRepository.findById(userId);
+		String username = user.get().getUsername();
+		model.addAttribute("message", username + "'s profile");
+		
 		return "library";
 	}
 	
@@ -93,6 +97,11 @@ public class GameController {
 	public String findWishlistGamesByUserId(@PathVariable long userId, Model model) {
 		games = gameService.findWishlistGamesbyUserId(userId);
 		model.addAttribute("wishlistGames", games);
+		
+		Optional<User> user = userRepository.findById(userId);
+		String username = user.get().getUsername();
+		model.addAttribute("message", username + "'s profile");
+		
 		return "wishlist";
 	}
 	
@@ -103,14 +112,25 @@ public class GameController {
 	@GetMapping("/game/{gameId}")
 	public String findGame(@PathVariable("gameId") long gameId, Model model) {
 		Optional<Game> game = gameService.findGameById(gameId);
-		model.addAttribute("game", game);
-		System.out.println(game + game.get().getTitle());
-		return "game";
+		if (game.isPresent()) {
+			model.addAttribute(game.get());
+			model.addAttribute("format", game.get().getFormats());
+			model.addAttribute("genre", game.get().getGenres());
+			model.addAttribute("mutliplayer", game.get().getPlayers());
+			model.addAttribute("platform", game.get().getPlatforms());
+			model.addAttribute("retailer", game.get().getRetailers());
+			return "game";
+		}
+		
+		return "redirect:/index";
+
 	}
+
 	
 	/*
 	 * This authenticates a user login to ensure they can get to their profile, and also 
 	 * provides multiple search/filter options for games.
+	 * I hope to improve a better filter with JpaSpecificationExecutor.
 	 */
 	@GetMapping("/index")
 	public String findGames(@ModelAttribute("user") @RequestParam(required = false, value="title") String title,
@@ -160,6 +180,8 @@ public class GameController {
 
 	/*
 	 * finds all games if no criteria, otherwise finds games based on params
+	 * I hope to update to a better filtering in the future with something like
+	 * JpaSpecificationExecutor.
 	 */
 	@ResponseBody
 	@GetMapping("/api/games")
