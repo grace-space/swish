@@ -1,7 +1,7 @@
 # swish 
 This is a case study for games collection and wishlist library, mainly focused on Nintendo Switch created for a Java full-stack course. 
 
-It's the first major web app I've created and was made to meet the course requirements, and thus it is quite simple. I plan on improving it (such as adding proper pagination, filters, etc). 
+It's the first major web app I've created and was made to meet the course requirements, and thus it is quite simple. I plan on improving it (such as adding proper pagination, filters, more features, etc.). 
 
 ## About
 My friends and I enjoy buying physical copies of Nintendo Switch games for certain games we really love. Sometimes it can be problematic when a game has a limited release, or when we forget that we own a game on multiple platforms.
